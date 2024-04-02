@@ -2,37 +2,37 @@
 
 - ### 前台
   1. #### 首頁
-     ![首頁圖片1](images/index1.png)
-     ![首頁圖片2](images/index3.PNG)
+     ![首頁圖片1](image/index1.png)
+     ![首頁圖片2](image/index3.PNG)
      
   2. #### 產品頁
-     ![產品頁圖片](images/product-index.png)
+     ![產品頁圖片](image/product-index.png)
      
   3. #### 會員頁&登入註冊
-     ![會員頁圖片](images/member-index.PNG)
-     ![註冊頁圖片](images/re.PNG)
-     ![登入頁圖片](images/log.PNG)
+     ![會員頁圖片](image/member-index.PNG)
+     ![註冊頁圖片](image/re.PNG)
+     ![登入頁圖片](image/log.PNG)
 
 - ### 後台管理
   1. #### 登入
-     ![後台登入圖片](images/admin-login.PNG)
+     ![後台登入圖片](image/admin-login.PNG)
      
   2. #### 會員管理
-     ![會員管理圖片](images/admin-member.PNG)
-     ![會員更新圖片](images/admin-member-update.PNG)
+     ![會員管理圖片](image/admin-member.PNG)
+     ![會員更新圖片](image/admin-member-update.PNG)
      
   3. #### 商品管理
-     ![商品管理圖片](images/admin-product.PNG)
-     ![商品新增圖片](images/admin-product-add.PNG)
+     ![商品管理圖片](image/admin-product.PNG)
+     ![商品新增圖片](image/admin-product-add.PNG)
      
   4. #### 類別管理
-     ![類別管理圖片](images/admin-type.PNG)
-     ![類別新增圖片](images/admin-type-add.PNG)
+     ![類別管理圖片](image/admin-type.PNG)
+     ![類別新增圖片](image/admin-type-add.PNG)
      
   5. #### 消息管理
-     ![消息管理圖片](images/admin-news.PNG)
-     ![消息新增圖片](images/admin-news-add.PNG)
-     ![消息更新圖片](images/admin-news-update.PNG)
+     ![消息管理圖片](image/admin-news.PNG)
+     ![消息新增圖片](image/admin-news-add.PNG)
+     ![消息更新圖片](image/admin-news-update.PNG)
 
 ## 技術功能
 
