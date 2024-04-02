@@ -62,7 +62,4 @@
 
 你可以透過以下方式與我聯絡
 
-- [Email](zyuen0492@gmail.com)
-- [Facebook](https://www.facebook.com/XXXX)
-- [Instagram](https://www.instagram.com/XXXX/)
-...
+- zyuen0492@gmail.com
