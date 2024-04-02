@@ -41,15 +41,17 @@
 - JS/ jQuery 3.7.1
 - MySQL 4.1.3
 - PHP 8
+- JS/ sweetalert2
 
 ## 功能簡介
 
-此專案為職訓課程練習，獨立作業練習出產品上架功能
+一頁式網站
 
-- 無框架
-- 在後台管理系統可以管理商品的類別和其上架，以及會員的管理，還有消息的新增
-- 前台網頁可以進行會員登入、查看商品上架、消息等渲染效果
-...
+- RWD響應式網站
+- 會員登入系統
+- 會員、商品、消息CRUD功能
+- 前後台商品上架渲染
+- 商品分類功能
 
 ## 第三方服務
 
@@ -61,7 +63,4 @@
 
 你可以透過以下方式與我聯絡
 
-- [Email](zyuen0492@gmail.com)
-- [Facebook](https://www.facebook.com/XXXX)
-- [Instagram](https://www.instagram.com/XXXX/)
-...
+- zyuen0492@gmail.com
