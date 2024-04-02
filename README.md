@@ -41,6 +41,7 @@
 - JS/ jQuery 3.7.1
 - MySQL 4.1.3
 - PHP 8
+- JS/ sweetalert2
 
 ## 功能簡介
 
