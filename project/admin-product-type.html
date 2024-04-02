@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>後台</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/sidebar.css">
+  <link rel="stylesheet" href="css/all.min.css">
+  <link rel="stylesheet" href="css/sweetalert2.min.css">
+</head>
+
+<body>
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <a href="#" onclick="openTab(event, 'Home')">首頁</a>
+    <a href="admin-member.html" onclick="openTab(event, 'member')"><i class="fa-solid fa-user"></i>&nbsp;會員管理</a>
+    <a href="#" class="dropdown-toggle-split nav-link dropdown-toggle tab" data-bs-toggle="dropdown"
+      aria-expanded="false">
+      <i class="fa-brands fa-pagelines"></i>&nbsp;商品
+    </a>
+    <ul class="dropdown-menu">
+      <li><a href="admin-product.html" onclick="openTab(event, 'product')" class="text-dark">商品管理</a></li>
+      <li><a href="admin-product-type.html" onclick="openTab(event, 'product-type')" class="text-dark">類別總覽</a></li>
+    </ul>
+    <a href="admin-news.html" onclick="openTab(event, 'news')"><i class="fa-solid fa-rss"></i>&nbsp;消息管理</a>
+    <a href="#" onclick="openTab(event, 'cart')"><i class="fa-solid fa-chalkboard"></i>&nbsp;訂單管理</a>
+    <a class="nav-link disabled" aria-disabled="true">待定</a>
+  </div>
+
+  <div id="main">
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; 後臺管理</span>
+    <div class="col text-end">
+      <span class="text-dark h3" id="user_message"></span>
+      <button type="button" id="loginoutButton" class="btn btn-outline-danger">登出</button>
+    </div>
+    <div class="container-fluid">
+      <!-- <div class="content-wrapper"> -->
+      <div class="container">
+        <div class="row d-flex justify-content-center mt-3 mx-3">
+          <div class="text-end">
+            <button class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#addModal">新增</button>
+          </div>
+          <table class="table table-bordered mb-3 text-center">
+            <thead>
+              <tr>
+                <th width="20%">編號</th>
+                <th>名稱</th>
+                <th width="20%">功能</th>
+              </tr>
+            </thead>
+            <tbody id="mybody">
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- </div> -->
+
+      <!-- Modal: 新增 -->
+      <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header text-bg-info">
+              <h1 class="modal-title fs-5 fw-900 text-center" id="exampleModalLabel">新增商品分類</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="pname" class="form-label">名稱</label>
+                <input type="text" class="form-control" name="pname" id="pname">
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+              <button type="button" class="btn btn-success" id="btn_add">確認</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal: 修改 -->
+      <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header text-bg-success">
+                    <h1 class="modal-title fs-5" id="updateModalLabel">產品更新</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="">項目</label>
+                        <input type="text" class="form-control" id="tname" name="pname" list="myoption">
+                        <div class="valid-feedback">字數符合規定</div>
+                        <div class="invalid-feedback">字數不符合規定</div>
+                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="modal_update_btn">確認更新</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/sweetalert2.all.min.js"></script>
+    <script src="js/admin/login.js"></script>
+
+    <script>
+      function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+      document.getElementById("main").style.marginLeft = "250px";
+    }
+
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+      document.getElementById("main").style.marginLeft = "0";
+    }
+      var u_id;
+       // update id
+      // read
+      $(function () {
+        $.ajax({
+          type: "GET",
+          url: "api/product-type/product-type_read-api.php",
+          dataType: "json",
+          success: showdata,
+          error: function () {
+            alert("error-api/news/news-read-api.php");
+          }
+        });
+      });
+      function showdata(data) {
+        console.log(data);
+
+        var strHTML = '';
+        $("#mybody").empty();
+        data.data.forEach(function (item) {
+          console.log(item.Name);
+          strHTML += '<tr><td class="py-4">'
+            + item.ID + '</td><td class="py-4">'
+            + item.Name +
+            '</td><td class="text-center py-4"><div class="d-flex align-content-center justify-content-center"><button class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#updateModal" data-id="' + item.ID + '" data-pname="' + item.Name + '" id="update_btn">更新</button><button class="btn btn-danger" data-id="' + item.ID + '"  id="delete_btn">刪除</button></div></td></tr>';
+        });
+        $("#mybody").append(strHTML);
+
+      }
+
+      // create
+      var flag_name = false;
+
+      /// modal:新增
+      $("#btn_add").click(function () {
+        var dataJSON = {};
+        dataJSON["Name"] = $("#pname").val();
+        $.ajax({
+          type: "POST",
+          url: "api/product-type/product-type_create-api.php",
+          data: JSON.stringify(dataJSON),
+          dataType: "json",
+          success: showdata02,
+          error: function () {
+            alert("error: b_productType_create_api.php");
+          }
+        });
+      });
+
+      function showdata02(data) {
+        if(data.state){
+            $("#addModal").modal("hide");
+            alert(data.message);
+            location.href = "admin-product-type.html";
+          }else{
+            alert(data.message);
+          }
+      }
+
+      // 監聽#updata_btn
+      $("#mybody").on("click", "#update_btn", function () {
+        console.log("update_btn_ok");
+        console.log($(this).data("id"));
+        console.log($(this).data("pname"));
+       
+
+        u_id = $(this).data("id");
+        $("#pname").val($(this).data("name"));
+      });
+
+      // 監聽 #update_btn
+      $("#modal_update_btn").click(function () {
+        var dataJSON = {};
+        dataJSON["ID"] = u_id;
+        dataJSON["Name"] = $("#tname").val();
+        console.log(u_id);
+        console.log(JSON.stringify(dataJSON));
+        console.log($("#mybody #update_btn").length);
+        // 傳遞更新參數至後端api
+        $.ajax({
+          type: "POST",
+          url: "api/product-type/product-type_update-api.php",
+          data: JSON.stringify(dataJSON),
+          dataType: "json",
+          success: showdata03,
+          error: function () {
+            alert("error-api/product-type/product-type_update-api.php");
+          }
+        });
+      });
+
+      function showdata03(data) {
+        console.log(data);
+        if (data.state) {
+          alert(data.message);
+          location.href = "admin-product-type.html"
+        } else {
+          alert(data.message);
+        }
+      }
+
+
+      //監聽#delete_btn
+      $("#mybody").on("click", "#delete_btn", function () {
+        if (confirm("確認刪除此筆資料嗎?")) {
+          console.log($(this).data("id"));
+          var dataJSON = {};
+          dataJSON["ID"] = $(this).data("id");
+          console.log(JSON.stringify(dataJSON));
+
+          //傳遞參數至後端api執行刪除功能
+          $.ajax({
+            type: "POST",
+            url: "api/product-type/product-type_delete-api.php",
+            data: JSON.stringify(dataJSON),
+            dataType: "json",
+            success: showdata_delete,
+            error: function () {
+              alert("error-api/product-type/product-type_delete-api.php");
+            }
+          });
+        }
+      });
+
+
+      function showdata_delete(data) {
+        console.log(data);
+        if (data.state) {
+          alert(data.message);
+          location.href = "admin-product-type.html";
+        } else {
+          alert(data.message);
+        }
+      }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,1045 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品管理</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/all.min.css">
+    <link rel="stylesheet" href="../../css/adminlte.min.css">
+    <link rel="stylesheet" href="../../css/jquery-ui_v1.13.2.css">
+    <style>
+      /* 移除分頁focus時的光暈 */
+      .pagination .page-item .page-link:focus {
+          border-color: none;
+          box-shadow: none;
+          outline: 0 none;
+      }
+  </style>
+</head>
+<body>
+      <!-- sidebar -->
+      <script src="../../js/addBackSidebar.js"></script>
+    
+      <!-- <div class="content-wrapper"> -->
+        <div class="container">
+          <div class="row d-flex justify-content-center mt-3 mx-3"> 
+            <div class="card">
+              <div class="card-header">
+                <!-- <button class="btn btn-primary" id="add_btn"  data-bs-toggle="modal" data-bs-target="#modal_add">新增</button> -->
+                <button class="btn btn-primary" id="add_btn">新增</button>
+              </div>
+            </div>
+              <table class="table table-bordered mb-3 text-center">
+                <thead>
+                  <tr>
+                    <th style="width: 10%;">項次</th>
+                    <th style="width: 15%;">圖片</th>
+                    <th style="width: 10%;">編號</th>
+                    <th style="width: 10%;">品名</th>
+                    <th style="width: 10%;">價格</th>
+                    <th style="width: 10%;">分類</th>
+                    <th style="width: 10%;">訂購</th>
+                    <th style="width: 10%;">狀態</th>
+                    <th>功能</th>
+                  </tr>
+                </thead>
+                <tbody id="mybody">
+                </tbody>
+              </table>        
+          </div>
+          <div class="row mt-3" >
+            <nav aria-label="...">
+                <ul class="pagination justify-content-center" id="pm_pageList">                   
+                </ul>
+            </nav>   
+          </div> 
+        </div>
+        <!-- </div> -->
+
+        <!-- Modal: 新增 -->
+        <div class="modal fade" id="modal_add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+              <div class="modal-header text-bg-success">
+              <h1 class="modal-title fs-5 fw-900" id="exampleModalLabel">新增商品</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div id="tabs_add">
+                  <ul>
+                      <li><a href="#tabs-1">基本資料</a></li>
+                      <li><a href="#tabs-2">詳細圖片</a></li>   
+                  </ul>
+                  <div id="tabs-1">
+                    <div class="row">
+                      <div class="col-7">
+                        <div class="row mb-3 input-group">
+                          <label for="modal_add_pno" class="col-2 input-group-text">編號</label>
+                          <input type="text" class="col-3 form-control" id="modal_add_pno" name="modal_add_pno" placeholder="必須輸入">
+                          <div class="valid-feedback offset-2" id="modal_add_pno_msg_OK">帳號符合規則</div>              
+                          <div class="invalid-feedback offset-2" id="modal_add_pno_msg_NG">帳號不符合規則</div> 
+                        </div>
+                        <div class="row mb-3 input-group">
+                          <label for="modal_add_name" class="col-2 input-group-text">名稱</label>
+                          <input type="text" class="col-3 form-control" id="modal_add_name" name="modal_add_name" placeholder="">
+                        </div>
+                        <div class="row mb-3 input-group">
+                          <label for="modal_add_price" class="col-2 input-group-text">價格</label>
+                          <input type="text" class="col-3 form-control" id="modal_add_price" name="modal_add_price" placeholder="">
+                        </div>
+                        <div class="row mb-3 input-group">
+                          <label for="modal_add_content" class="col-2 input-group-text">內文</label>
+                          <textarea class="col-6 form-control" name="modal_add_content" id="modal_add_content" row="8"></textarea>
+                        </div>
+                        <div class="row mb-3 input-group">
+                          <label for="modal_add_typeOptions" class="col-2 input-group-text">分類</label>   
+                          <select class="col-3 form-select" id="modal_add_typeOptions">
+                            <option selected disabled>請選擇分類</option>
+                          </select>   
+                        </div>
+                        <div class="row mb-3 input-group">
+                          <label for="modal_add_openOrder" class="col-2 input-group-text">開放訂購</label>
+                          <div class="col">
+                            <div class="row mt-2">
+                              <div class="col-3 offset-1 form-check form-switch">
+                                <input type="checkbox" name="modal_add_openOrder" id="modal_add_openOrder" class="form-check-input" checked>
+                                <label for="" class="form-check-label">開啟</label>
+                              </div>                 
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row mb-3 input-group">
+                          <label for="modal_add_active" class="col-2 input-group-text">狀態</label>
+                          <div class="col">
+                            <div class="row mt-2">
+                              <div class="col-3 offset-1 form-check form-switch">
+                                <input type="checkbox" name="modal_add_active" id="modal_add_active" class="form-check-input" checked>
+                                <label for="" class="form-check-label">上架</label>
+                              </div>                 
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-5">
+                        <div class="row mb-3 input-group">
+                          <label for="modal_add_saleTitleOptions" class="col-3 input-group-text">銷售標題</label>   
+                          <select class="col-5 form-select" id="modal_add_saleTitleOptions">
+                            <option selected disabled>請選擇標題</option>
+                          </select>   
+                        </div>
+                        <div class="row mb-3 input-group" id="modal_add_homePhoto">
+                          <label for="modal_add_fileUpload" class="col-3 input-group-text">首頁圖片</label> 
+                          <input type="file" class="col-7 form-control" id="modal_add_fileUpload" name="modal_add_fileUpload">                     
+                        </div> 
+                        <div class="text-center">
+                            <img src="#" id="modal_add_prevImg" alt="" class="w-50 my-3">
+                        </div>
+                      </div>
+                    </div>                     
+                  </div>
+                  <div id="tabs-2">
+                    <table class="table table-bordered mb-3 text-center">
+                      <thead>
+                        <tr>
+                          <th style="width: 10%;">項次</th>
+                          <th style="width: 15%;">圖片</th>
+                          <th>功能</th>
+                        </tr>
+                      </thead>
+                      <tbody id="modal_add_photo_page">
+                      </tbody>
+                    </table>   
+                  </div>
+                </div> 
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" id="modal_add_ok">新增</button>
+                  <button type="button" class="btn btn-secondary" id="modal_add_cancel" data-bs-dismiss="modal">取消</button>
+              </div>
+          </div>
+          </div>
+      </div>
+
+        <!-- Modal: 修改 -->
+        <div class="modal fade" id="modal_update" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-xl">
+            <input type="hidden" id="modal_update_id">
+            <div class="modal-content">
+              <div class="modal-header text-bg-info">
+                <h1 class="modal-title fs-5 fw-900" id="exampleModalLabel">修改商品</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div id="tabs_update">
+                  <ul>
+                      <li><a href="#tabs-1">基本資料</a></li>
+                      <li><a href="#tabs-2">詳細圖片</a></li>                 
+                  </ul>
+                  <div id="tabs-1">
+                    <div class="row">
+                      <div class="col-7">
+                        <div class="row mb-3 input-group">
+                          <label for="modal_update_pno" class="col-2 input-group-text">編號</label>
+                          <input type="text" class="col-3 form-control" id="modal_update_pno" name="modal_update_pno" placeholder="必須輸入">
+                          <div class="valid-feedback offset-2" id="modal_update_pno_msg_OK">帳號符合規則</div>              
+                          <div class="invalid-feedback offset-2" id="modal_update_pno_msg_NG">帳號不符合規則</div> 
+                        </div>
+                        <div class="row mb-3 input-group">
+                          <label for="modal_update_name" class="col-2 input-group-text">名稱</label>
+                          <input type="text" class="col-3 form-control" id="modal_update_name" name="modal_update_name" placeholder="">
+                        </div>
+                        <div class="row mb-3 input-group">
+                          <label for="modal_update_price" class="col-2 input-group-text">價格</label>
+                          <input type="text" class="col-3 form-control" id="modal_update_price" name="modal_update_price" placeholder="">
+                        </div>
+                        <div class="row mb-3 input-group">
+                          <label for="modal_update_content" class="col-2 input-group-text">內文</label>
+                          <textarea class="col-6 form-control" name="modal_update_content" id="modal_update_content" row="8"></textarea>
+                        </div>
+                        <div class="row mb-3 input-group">
+                          <label for="modal_update_typeOptions" class="col-2 input-group-text">分類</label>   
+                          <select class="col-3 form-select" id="modal_update_typeOptions">
+                            <option selected disabled>請選擇分類</option>
+                          </select>   
+                        </div>
+                        <div class="row mb-3 input-group">
+                          <label for="modal_update_openOrder" class="col-2 input-group-text">開放訂購</label>
+                          <div class="col">
+                            <div class="row mt-2">
+                              <div class="col-3 offset-1 form-check form-switch">
+                                <input type="checkbox" name="modal_update_openOrder" id="modal_update_openOrder" class="form-check-input" checked>
+                                <label for="" class="form-check-label">開啟</label>
+                              </div>                 
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row mb-3 input-group">
+                          <label for="modal_update_active" class="col-2 input-group-text">狀態</label>
+                          <div class="col">
+                            <div class="row mt-2">
+                              <div class="col-3 offset-1 form-check form-switch">
+                                <input type="checkbox" name="modal_update_active" id="modal_update_active" class="form-check-input" checked>
+                                <label for="" class="form-check-label">上架</label>
+                              </div>                 
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-5">
+                        <div class="row mb-3 input-group">
+                          <label for="modal_update_createdAt" class="col-3 input-group-text">建檔時間</label>
+                          <input type="text" class="col-5 form-control" name="modal_update_createdAt" id="modal_update_createdAt">
+                        </div>
+                        <div class="row mb-3 input-group">
+                          <label for="modal_update_updatedAt" class="col-3 input-group-text">更新時間</label>
+                          <input type="text" class="col-5 form-control" name="modal_update_updatedAt" id="modal_update_updatedAt">
+                        </div>
+                        <div class="row mb-3 input-group">
+                          <label for="modal_update_saleTitleOptions" class="col-3 input-group-text">銷售標題</label>   
+                          <select class="col-5 form-select" id="modal_update_saleTitleOptions">
+                            <option selected disabled>請選擇標題</option>
+                          </select>   
+                        </div>
+                        <div class="row mb-3 input-group" id="modal_update_homePhoto">
+                          <label for="modal_update_fileUpload" class="col-3 input-group-text">首頁圖片</label> 
+                          <input type="file" class="col-7 form-control" id="modal_update_fileUpload" name="modal_update_fileUpload">                     
+                        </div> 
+                        <div class="text-center">
+                            <img src="#" id="modal_update_prevImg" alt="" class="w-50 my-3">
+                        </div>
+                      </div>
+                    </div>
+                      
+
+                  </div>
+                  <div id="tabs-2">
+                    <table class="table table-bordered mb-3 text-center">
+                      <thead>
+                        <tr>
+                          <th style="width: 10%;">項次</th>
+                          <th style="width: 15%;">圖片</th>
+                          <th>功能</th>
+                        </tr>
+                      </thead>
+                      <tbody id="modal_update_photo_page">
+                      </tbody>
+                    </table>  
+                  </div>
+                </div> 
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-success" id="modal_update_ok">確認</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      
+      <!-- footer -->
+      <script src="../../js/addBackFooter.js"></script>   
+      <script src="../../js/bootstrap.bundle.min.js"></script>
+      <script src="../../js/jquery-3.7.1.min.js"></script>
+      <script src="../../js/adminlte.min.js"></script>    
+      <script src="../../js/paginationManagerSingle.js"></script> 
+      <script src="../../js/jquery-ui_v1.13.2.js"></script>
+      <script>
+        var mapProductType = new Map();
+        var mapSaleTitle = new Map();
+        var upload_photo_name ="";
+        var flag_registerWebName = false;       // 建立帳號
+        var flag_registerPwd = false;           // 建立密碼
+        var flag_registerCheckPwd = false;      // 確認密碼
+        var flag_registerMemberType = false;    // 會員等級
+        var lastImgName = "";
+        var updateImgFolder = "../../upload/images/product/";
+        var mapModalAddPhoto = new Map();                        
+        var arrUploadPhotoName = [];
+        var mapModalPhotoName = new Map();
+        var arrModalPhotoData = [];
+        var mapModalUpdatePhoto = new Map();
+        var arrModalUpdatePhotoSrc = [];
+        var arrModalUpdatePhotoDelete = [];       
+        var pageNowIdx = 0;
+        
+        $(function(){
+            // 標題
+            $("#webTitle").text("商品管理");
+
+            // sidebar提示
+            $("#sidebar_product").addClass("menu-open");
+            $("#sidebar_product a:first").addClass("active");
+            $("#sidebar_product ul li:first a").addClass("active");
+
+            $( "#tabs_add" ).tabs();
+            $( "#tabs_update" ).tabs();
+
+            // 取得資料
+            getProductType();
+            getSaleTitle();
+            updateData();
+            
+
+            setModalAddPageLayout();
+            setModalUpdatePageLayout();
+
+            // 顯示: 新增產品的modal
+            $("#add_btn").click(function(){
+              mapModalAddPhoto.clear();
+              setModalAddPageLayout();
+              $("#modal_add").modal("show");
+            })
+           
+
+            // 顯示更新modal
+            $("body").on("click", "#mybody #btn_update", function(){
+
+              // 清空狀態
+              setModalUpdatePageLayout();
+
+              $("#modal_update_id").val($(this).data("id"));
+              $("#modal_update_pno").val($(this).data("pno"));
+              $("#modal_update_name").val($(this).data("name"));
+              $("#modal_update_price").val($(this).data("price"));
+              $("#modal_update_content").val($(this).data("content"));
+              $("#modal_update_createdAt").val($(this).data("createdat"));
+              $("#modal_update_updatedAt").val($(this).data("updatedat"));
+
+              // 分類
+              $("#modal_update_typeOptions").empty();
+              for(var[key, value] of mapProductType){
+                var enable = key==$(this).data("type") ? "selected" :"";
+                 var html = '<option value="'+key+'" '+enable+'>'+value+'</option>';
+                 $("#modal_update_typeOptions").append(html);
+              }  
+
+              // 銷售標題
+              $("#modal_update_saleTitleOptions").empty();
+              for(var[key, value] of mapSaleTitle){
+                var enable = key==$(this).data("sale") ? "selected" :"";
+                 var html = '<option value="'+key+'" '+enable+'>'+value+'</option>';
+                 $("#modal_update_saleTitleOptions").append(html);
+              }  
+
+              // 開放訂購
+              if( $(this).data("openorder")=="Y"){
+                  $("#modal_update_openOrder").prop('checked', true).next().text("開啟");
+              }else{
+                  $("#modal_update_openOrder").prop('checked', false).next().text("取消");
+              }
+
+
+              // 上架
+              if( $(this).data("active")=="Y"){
+                  $("#modal_update_active").prop('checked', true).next().text("上架");
+              }else{
+                  $("#modal_update_active").prop('checked', false).next().text("下架");
+              }
+
+              // 商品圖片              
+              var photoData = $(this).data("photo");
+              if(photoData!=""){
+                path = updateImgFolder + photoData;                   
+                $("#modal_update_prevImg").attr("src", path);
+              }
+
+              // 詳細圖片
+              var pno = $(this).data("pno");
+              if(mapModalPhotoName.has(pno)){
+                var idxData = mapModalPhotoName.get(pno);
+                var arrImg = arrModalPhotoData[idxData];
+                
+                mapModalUpdatePhoto.clear();
+                arrModalUpdatePhotoSrc.length = 0;
+                arrModalUpdatePhotoDelete.length = 0;
+                var total = (arrImg.length>5) ? 5 : arrImg.length;              
+                for(var idx=0; idx<total; idx++){
+                  path = updateImgFolder + arrImg[idx].Photo;                 
+                  var idName = "#modal_update_photo_page_preImg_"+idx.toString();         
+                  $(idName).attr("src", path);
+                  arrModalUpdatePhotoSrc.push(arrImg[idx].Photo);               
+                }
+              }
+
+
+            });
+
+            // 刪除
+            $("body").on("click", "#mybody #btn_delete", function () {
+                if (confirm("確認刪除?")) {
+
+                  deleteProductPhoto($(this).data("pno"));
+
+                    var dataJSON = {};
+                    dataJSON["ID"] = $(this).data("id");
+                    $.ajax({
+                        type: "POST",
+                        url: "../../api/back/product/b_product_delete_api.php",
+                        data: JSON.stringify(dataJSON),
+                        dataType: "json",
+                        success: showdata_delete,
+                        error: function () {
+                            alert("error: b_product_delete_api.php");
+                        }
+                    });
+                }
+            });
+
+            // modal:新增
+            $("#modal_add_ok").click(function(){
+              // 上傳商品圖
+              if(modal_add_fileUpload.files.length > 0){
+                  imgUpload(modal_add_fileUpload);
+              }
+
+              // 詳細產品照片
+              if(mapModalAddPhoto.size>0){
+                imgUploadMulti(mapModalAddPhoto);
+                addPhotoDB($("#modal_add_pno").val(), arrUploadPhotoName);
+              }
+
+
+              var dataJSON={};
+              dataJSON["Name"] = $("#modal_add_name").val();
+              dataJSON["PNO"] = $("#modal_add_pno").val();
+              dataJSON["Price"] = $("#modal_add_price").val();
+              dataJSON["Content"] = $("#modal_add_content").val();
+              dataJSON["Type_ID"] = $("#modal_add_typeOptions").val();
+              dataJSON["OpenOrder"] = $("#modal_add_openOrder").is(':checked') ? "Y" :"N";
+              dataJSON["Active"] = $("#modal_add_active").is(':checked') ? "Y" :"N";
+              dataJSON["SaleTitle_ID"] = $("#modal_add_saleTitleOptions").val();
+              dataJSON["Photo"] = upload_photo_name;              
+
+              $.ajax({
+                type:"POST",
+                url:"../../api/back/product/b_product_create_api.php",
+                data:JSON.stringify(dataJSON),
+                dataType:"json",
+                success:showData_add,
+                error:function(){
+                  alert("error: b_product_create_api.php");
+                }
+              });
+
+            });
+
+            // modal:修改
+            $("#modal_update_ok").click(function(){   
+              
+                // 上傳商品圖
+                if(modal_update_fileUpload.files.length > 0){
+                  imgUpload(modal_update_fileUpload);
+                }
+
+                // 20240319, 詳細圖片
+                if(arrModalUpdatePhotoDelete.length>0)
+                {
+                  deleteProductPhotoByPhoto(arrModalUpdatePhotoDelete);
+                }
+                
+                // 上船詳細圖片
+                if(mapModalUpdatePhoto.size>0){
+                  imgUploadMulti(mapModalUpdatePhoto);
+                  addPhotoDB($("#modal_update_pno").val(), arrUploadPhotoName);
+                }
+
+                var dataJSON={};
+                dataJSON["ID"] = $("#modal_update_id").val();
+                dataJSON["Name"] = $("#modal_update_name").val();
+                dataJSON["PNO"] = $("#modal_update_pno").val();
+                dataJSON["Price"] = $("#modal_update_price").val();
+                dataJSON["Content"] = $("#modal_update_content").val();
+                dataJSON["Type_ID"] = $("#modal_update_typeOptions").val();
+                dataJSON["OpenOrder"] = $("#modal_update_openOrder").is(':checked') ? "Y" :"N";
+                dataJSON["Active"] = $("#modal_update_active").is(':checked') ? "Y" :"N";
+                dataJSON["SaleTitle_ID"] = $("#modal_update_saleTitleOptions").val();
+                dataJSON["Photo"] = upload_photo_name;                   
+            
+                $.ajax({
+                  type:"POST",
+                  url:"../../api/back/product/b_product_update_api.php",
+                  data:JSON.stringify(dataJSON),
+                  dataType:"json",
+                  success:showData_update,
+                  error:function(){
+                    alert("error: b_product_update_api.php");
+                  }
+                });
+            });
+
+            // 監聽: modal_add的開放訂購
+            $("#modal_add_openOrder").change(function(){
+              $(this).next().text($(this).is(':checked') ? "開啟": "關閉");
+            });
+
+            // 監聽: modal_add的狀態
+            $("#modal_add_active").change(function(){
+              $(this).next().text($(this).is(':checked') ? "上架": "下架");
+            });
+
+            // 監聽: modal_add的上傳圖片
+            $("#modal_add_fileUpload").change(function(){
+              var type = modal_add_fileUpload.files[0].type;
+                if(type == "image/jpeg" || type=="image/png"){
+                    var path = URL.createObjectURL(modal_add_fileUpload.files[0]);
+                    $("#modal_add_prevImg").attr("src", path);
+                }else{
+                    $("#modal_add_prevImg").addClass("d-none");
+                }
+            });
+
+            // 取消新增
+            $("#modal_add_cancel").click(function(){
+              resetModalAdd();
+              setModalAddPageLayout();
+            });
+
+            // 監聽: modal_add的開放訂購
+            $("#modal_update_openOrder").change(function(){
+              $(this).next().text($(this).is(':checked') ? "開啟": "關閉");
+            });
+
+            // 監聽: modal_add的狀態
+            $("#modal_update_active").change(function(){
+              $(this).next().text($(this).is(':checked') ? "上架": "下架");
+            });
+
+            // 監聽: modal_add的上傳圖片
+            $("#modal_update_fileUpload").change(function(){
+              var type = modal_update_fileUpload.files[0].type;
+                if(type == "image/jpeg" || type=="image/png"){
+                    var path = URL.createObjectURL(modal_update_fileUpload.files[0]);
+                    $("#modal_update_prevImg").attr("src", path);
+                }else{
+                    $("#modal_update_prevImg").addClass("d-none");
+                }
+            });
+
+            // 監聽: 編號建立規則
+            $("#modal_add_pno").bind("input propertychange", function(){       
+              var dataJSON={};
+              dataJSON["PNO"] = $(this).val();
+
+              $.ajax({
+                  type:"POST",
+                  url:"../../api/back/product/b_product_check_pno_api.php",
+                  data: JSON.stringify(dataJSON),
+                  dataType:"json",                
+                  success:showdata_check_modalAdd_pno,
+                  error:function(){
+                      alert("error-f_member_check_name_api.php");
+                  }
+              });
+            });
+
+        });
+
+        // 取得會員資料
+        function updateData(){      
+          getProductPhoto();    
+          $.ajax({
+            type:"GET",
+            url:"../../api/back/product/b_product_read_api.php",
+            dataType:"json",
+            async:false,
+            success:showData,
+            error:function(){
+              alert("error: b_member_read_api.php");
+            }          
+          });
+        }
+
+        
+        function getProductType(){
+          $.ajax({
+            type:"GET",
+            url:"../../api/back/productType/b_productType_read_api.php",
+            dataType:"json",
+            async:false,
+            success:showData_productType,
+            error:function(){
+              alert("error: b_productType_read_api.php");
+            }          
+          });
+        }
+
+        
+        function getSaleTitle(){
+          $.ajax({
+            type:"GET",
+            url:"../../api/back/productSaleTitle/b_productSaleTitle_read_api.php",
+            dataType:"json",
+            async:false,
+            success:showData_saleTitle,
+            error:function(){
+              alert("error: b_productSaleTitle_read_api.php");
+            }          
+          });
+        };
+
+        function showData(data){
+
+          if(data.state){
+            pm_resetData();
+            $("#mybody").empty();
+              data.data.forEach(function(item, idx){
+              pm_dataSrc.push(item);
+            })
+            pm_setShowDataNum(5);           
+            pm_drawPageList();
+            drawTable(pageNowIdx);
+          }else{
+            alert(data.message);
+          }
+        }
+
+        function showData_productType(data){
+          if(data.state){
+            data.data.forEach(function(item){
+              mapProductType.set(item["ID"], item["Name"]);
+              var html = '<option value="'+item["ID"]+'">'+item["Name"]+'</option>'
+              $("#modal_add_typeOptions").append(html);
+            });
+          }else{
+            alert(data.message);
+          }
+      
+        }
+
+        function showData_saleTitle(data){
+          if(data.state){
+            data.data.forEach(function(item){
+              mapSaleTitle.set(item["ID"], item["Name"]);
+
+              // 新增modal:會員等級
+              var html = '<option value="'+item["ID"]+'">'+item["Name"]+'</option>'
+              $("#modal_add_saleTitleOptions").append(html);
+            });
+          }else{
+            alert(data.message);
+          }
+        }
+
+        function showData_add(data){          
+          if(data.state){
+            $("#modal_add").modal("hide");
+     
+
+            // 清空新增modal內所有欄位
+            resetModalAdd();
+
+            pageNowIdx = 0;
+            updateData();
+          }else{
+            alert(data.message);
+          }
+        }
+
+        function showData_update(data){          
+          if(data.state){
+            $("#modal_update").modal("hide");
+            pageNowIdx = pl_nowIdx;
+            // console.log("showData_update, pageNowIdx: " +pageNowIdx);
+            updateData();
+          }else{
+            alert(data.message);
+          }
+        }
+
+
+        function showdata_delete(data){          
+          if(data.state){
+            pageNowIdx = 0;
+            updateData();
+          }else{
+            alert(data.message);
+          }
+          
+        }
+
+        // 上傳圖片
+        function imgUpload(file)
+        {
+            var formData = new FormData();
+            formData.append("file", file.files[0]);
+            //傳遞formdata至後端api
+            $.ajax({
+                type:"POST", 
+                url:"../../api/back/productPhoto/b_productPhoto_imgUpload_api.php",
+                data: formData,
+                dataType: "json",
+                cache: false,
+                contentType:false,
+                processData:false,
+                async:false,
+                success:showdata_imgUpload,
+                error:function(){
+                    alert("error: b_productPhoto_imgUpload_api.php");
+                }
+            });
+        }
+
+        function showdata_imgUpload(data)
+        {
+            if(data.state){
+              upload_photo_name = data.data.serverfilename;
+            }else{
+                alert(data.message);
+            }
+        }
+
+
+        // 取得: 確認編號是否存在
+        function showdata_check_modalAdd_pno(data){
+            // alert(data.message);
+            if(data.state){
+                $("#modal_add_pno_msg_OK").text("編號可以使用");
+                $("#modal_add_pno").removeClass("is-invalid");
+                $("#modal_add_pno").addClass("is-valid");
+                flag_registerWebName = true;
+            }else{
+                $("#modal_add_pno_msg_NG").text("此編號已存在!");                
+                $("#modal_add_pno").removeClass("is-valid");
+                $("#modal_add_pno").addClass("is-invalid");
+                flag_registerWebName = false;
+            }
+        }
+
+        // 新增modal的圖片清空
+        function resetModalAdd()
+        {
+          $("#modal_add_pno").val("");
+          $("#modal_add_pno").removeClass("is-invalid");
+          $("#modal_add_pno").removeClass("is-valid");
+
+          $("#modal_add_name").val("");
+          $("#modal_add_price").val("");
+          $("#modal_add_content").val("");
+          $("#modal_add_typeOptions").val();
+          $("#modal_add_saleTitleOptions").val();
+          $("#modal_add_openOrder").prop('checked', true).next().text("開啟");
+          $("#modal_add_active").prop('checked', true).next().text("上架");
+
+          $("#modal_add_homePhoto").empty();
+          var html = '<label for="modal_add_fileUpload" class="col-3 input-group-text">首頁圖片</label> <input type="file" class="col-7 form-control" id="modal_add_fileUpload" name="modal_add_fileUpload">';
+          $("#modal_add_homePhoto").append(html);
+
+          $("#modal_add_prevImg").attr("src", "");
+        }
+
+
+        function showdata_deleteImg(data)
+        {          
+          if(!data.state)
+            alert(data.message);
+        }
+
+        function pm_callback(data, startIdx){
+            // console.log("--pm_callback--");
+            // console.log(data);
+
+            $("#mybody").empty();
+            data.forEach(function(item, idx){
+              var root = $('<tr>');
+              root = root.append($('<td>').text(startIdx+idx+1));                 
+              root = root.append($('<td>').append('<img src="'+updateImgFolder+item["Photo"]+'" alt="" class="w-50 my-3">'));
+              root = root.append($('<td>').text(item["PNO"])); 
+              root = root.append($('<td>').text(item["Name"]));
+              root = root.append($('<td>').text(item["Price"]));
+              root = root.append($('<td>').text(mapProductType.get(item["Type_ID"])));
+                root = root.append($('<td>').text(item["OpenOrder"]=="Y"? "開啟":"關閉").addClass(item["OpenOrder"]=="Y"? "" :"text-danger"));
+              root = root.append($('<td>').text(item["Active"]=="Y"? "上架":"下架").addClass(item["Active"]=="Y"? "" :"text-danger"));
+              var btnRoot = $('<td>');
+              btnRoot = btnRoot.append($('<button>').addClass('btn btn-success me-1').text("更新").attr({
+                  "id":"btn_update", 
+                  "data-bs-toggle":"modal",
+                  "data-bs-target":"#modal_update",
+                  "data-id":item["ID"],                  
+                  "data-name":item["Name"],
+                  "data-pno":item["PNO"],
+                  "data-price":item["Price"],
+                  "data-content":item["Content"],
+                  "data-type":item["Type_ID"],
+                  "data-openorder":item["OpenOrder"],
+                  "data-active":item["Active"],
+                  "data-sale":item["SaleTitle_ID"],
+                  "data-photo":item["Photo"],
+                  "data-createdat":item["Created_at"],
+                  "data-updatedat":item["Updated_at"]
+              }));
+              btnRoot = btnRoot.append($('<button>').addClass('btn btn-danger').text("刪除").attr({
+                  "id":"btn_delete",
+                  "data-id":item["ID"],
+                  "data-pno":item["PNO"]
+              }));
+              root = root.append(btnRoot);
+              $("#mybody").append(root);
+            });
+        }
+
+        function setModalAddPageLayout(){
+          // 詳細圖片
+          $("#modal_add_photo_page").empty();
+          for(var idx=0; idx<5; idx++){
+            var idName = "modal_add_photo_page_preImg_"+idx.toString();
+            var tagFileId = "modal_add_photo_page_tag_"+idx.toString();
+            var root = $('<tr>');
+            root = root.append($('<td>').text(idx+1));  
+            root = root.append($('<td>').append('<img src="#" id="'+idName+'" alt="" class="w-50 my-3">'));
+            root = root.append($('<td>').append('<div class="row"><div class="col-6" id="'+tagFileId+'"><input type="file" class="form-control" onchange="selectModalAddPhotoFile(this.files, '+idx+')" data-id="'+idx+'"></div><button class="col-1 ms-1 btn btn-danger" onclick="setModalAddPhotoDelete('+idx+')">刪除</button></div>'));  
+            $("#modal_add_photo_page").append(root);
+          }
+        }
+
+        function selectModalAddPhotoFile(files, id) {
+            var file = files[0];
+            var path = URL.createObjectURL(file);
+            var idName = "#modal_add_photo_page_preImg_"+id.toString();         
+            $(idName).attr("src", path);
+            mapModalAddPhoto.set(id, file);
+        }
+
+        function setModalAddPhotoDelete(id){
+          var tagFileId = "#modal_add_photo_page_tag_"+id.toString();
+          $(tagFileId).empty();
+          var html = '<input type="file" class="form-control" onchange="selectModalAddPhotoFile(this.files, '+id+')" data-id="'+id+'">';
+          $(tagFileId).append(html);
+          var idName = "#modal_add_photo_page_preImg_"+id.toString();
+          $(idName).attr("src", "");
+          if(mapModalAddPhoto.has(id))
+            mapModalAddPhoto.delete(id);
+        }
+
+        // 上傳產品詳細圖片
+        function imgUploadMulti(mapFile)
+        {
+            mapFile.forEach(function(item){            
+              //傳遞formdata至後端api
+              var formData = new FormData();
+              formData.append("file", item);
+              //傳遞formdata至後端api
+              $.ajax({
+                  type:"POST", 
+                  url:"../../api/back/productPhoto/b_productPhoto_imgUpload_api.php",
+                  data: formData,
+                  dataType: "json",
+                  cache: false,
+                  contentType:false,
+                  processData:false,
+                  async:false,
+                  success:showdata_imgUploadMulti,
+                  error:function(){
+                      alert("error: b_productPhoto_imgUpload_api.php");
+                  }
+              });
+            })
+        }
+
+        function showdata_imgUploadMulti(data)
+        {
+            if(data.state){
+              var name = data.data.serverfilename;              
+              arrUploadPhotoName.push(name);
+            }
+        }
+
+        function addPhotoDB(PNO, arrName){
+          arrName.forEach(function(item){
+            var dataJSON={};
+            dataJSON["PNO"] = PNO;
+            dataJSON["Photo"] = item;            
+        
+            $.ajax({
+              type:"POST",
+              url:"../../api/back/productPhoto/b_productPhoto_create_api.php",
+              data:JSON.stringify(dataJSON),
+              dataType:"json",
+              success:showData_productPhoto_create,
+              error:function(){
+                alert("error: b_productPhoto_create_api.php");
+              }
+            });
+          });
+          // 清空陣列
+          arrName.length = 0;
+        }
+
+        function showData_productPhoto_create(data){
+          if(!data.state)
+            console.log(data);
+        }
+
+        function setModalUpdatePageLayout(){
+          // 詳細圖片
+          $("#modal_update_photo_page").empty();
+          for(var idx=0; idx<5; idx++){
+            var idName = "modal_update_photo_page_preImg_"+idx.toString();
+            var tagFileId = "modal_update_photo_tag_"+idx.toString();
+            var root = $('<tr>');
+            root = root.append($('<td>').text(idx+1));  
+            root = root.append($('<td>').append('<img src="#" id="'+idName+'" alt="" class="w-50 my-3">'));
+            root = root.append($('<td>').append('<div class="row"><div class="col-6" id="'+tagFileId+'"><input type="file" class="form-control" onchange="selectModalUpdatePhotoFile(this.files, '+idx+')" data-id="'+idx+'"></div><button class="col-1 ms-1 btn btn-danger" onclick="setModalUpdatePhotoDelete('+idx+')">刪除</button></div>'));  
+            $("#modal_update_photo_page").append(root);
+          }
+        }
+
+        function selectModalUpdatePhotoFile(files, id) {
+            var file = files[0];
+            var path = URL.createObjectURL(file);
+            var idName = "#modal_update_photo_page_preImg_"+id.toString();         
+            $(idName).attr("src", path);
+            mapModalUpdatePhoto.set(id, file);
+
+          var photo = arrModalUpdatePhotoSrc[id];          
+          if((photo!="") && !arrModalUpdatePhotoDelete.includes(photo))
+          {
+            arrModalUpdatePhotoDelete.push(photo);  
+            arrModalUpdatePhotoSrc[id] = "";
+          }
+        }
+
+        function setModalUpdatePhotoDelete(id){
+          var tagFileId = "#modal_update_photo_tag_"+id.toString();
+          $(tagFileId).empty();
+          var html = '<input type="file" class="form-control" onchange="selectModalUpdatePhotoFile(this.files, '+id+')" data-id="'+id+'">';
+          $(tagFileId).append(html);
+          var idName = "#modal_update_photo_page_preImg_"+id.toString();
+          $(idName).attr("src", "");
+    
+          if(mapModalUpdatePhoto.has(id))
+          {      
+            mapModalUpdatePhoto.delete(id);            
+          }
+          
+          var photo = arrModalUpdatePhotoSrc[id];          
+          if((photo!="") && !arrModalUpdatePhotoDelete.includes(photo))
+          {
+            arrModalUpdatePhotoDelete.push(photo);  
+            arrModalUpdatePhotoSrc[id] = "";
+          }
+        }
+
+        function getProductPhoto()
+        {
+            $.ajax({
+              type:"GET",
+              url:"../../api/back/productPhoto/b_productPhoto_read_api.php",
+              dataType:"json",
+              async:false,
+              success:showData_productPhoto_read,
+              error:function(){
+                alert("error: b_productPhoto_read_api.php");
+              }
+            });
+        }
+
+        function showData_productPhoto_read(data){          
+
+          // 清空陣列
+          mapModalPhotoName.clear();
+          arrModalPhotoData.length = 0;
+
+          data.data.forEach(function(item){
+            var pno = item.PNO;
+            if(!mapModalPhotoName.has(pno)){
+              var idx = mapModalPhotoName.size;
+              mapModalPhotoName.set(pno, idx)
+              arrModalPhotoData.push(new Array);
+            }
+            var idxData = mapModalPhotoName.get(pno);
+            arrModalPhotoData[idxData].push(item);
+          });
+        }
+
+        function deleteProductPhoto(pno)
+        {
+            var dataJSON={};
+            dataJSON["PNO"] = pno;           
+        
+            $.ajax({
+              type:"POST",
+              url:"../../api/back/productPhoto/b_productPhoto_delete_api.php",
+              data:JSON.stringify(dataJSON),
+              dataType:"json",
+              success:showData_productPhoto_delete,
+              error:function(){
+                alert("error: b_productPhoto_delete_api.php");
+              }
+            });
+        }
+
+        function showData_productPhoto_delete(data){
+          if(!data.state)
+            console.log(data);
+        }
+
+        function deleteProductPhotoByPhoto(arr)
+        {
+          arr.forEach(function(item){
+            var dataJSON={};
+            dataJSON["Photo"] = item;           
+        
+            $.ajax({
+              type:"POST",
+              url:"../../api/back/productPhoto/b_productPhoto_delete_byPhoto_api.php",
+              data:JSON.stringify(dataJSON),
+              dataType:"json",
+              success:showData_productPhoto_delete_byPhoto,
+              error:function(){
+                alert("error: b_productPhoto_delete_byPhoto_api.php");
+              }
+            });
+          })
+        }
+
+
+        function showData_productPhoto_delete_byPhoto(data){
+          if(!data.state)
+            console.log(data);
+        }
+
+      </script>
+</body>
+</html>

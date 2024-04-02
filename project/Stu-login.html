@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>學生登入畫面</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/myall.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <style>
+        .section01-bg {
+            background-color: #f9f7f0;
+        }
+
+        .section01-text {
+            color: #072a40;
+        }
+
+        .section02-bg {
+            background-color: #178ca4;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fa-solid fa-car-side text-info fa-2x wow animate__bounceInLeft" data-wow-duration="3s"
+                    data-wow-delay="0s" data-wow-iteration="infinite"></i>
+                學習中心
+            </a>
+            <h2 id="user_message" class="fw-700 text-light"></h2>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            課程
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">選項 1</a></li>
+                            <li><a class="dropdown-item" href="#">選項 2</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">問題討論</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">課程購買</a>
+                    </li>
+                </ul>
+                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#registerModal"
+                    id="loginoutButton">登出</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row " style="height: 25vh;">
+            <div class="col-6 mx-auto py-3">
+                <label for="message" class="text-center mt-3 d-flex justify-content-center fw-900 border border-4 border-dark" style="font-size: 30px;">請輸入問題</label>
+                <textarea id="message" name="message" rows="4" class="mt-5 form-control" placeholder="和課程相關的問題！"></textarea>
+                <!-- 問題討論id -->
+                <button class="btn btn-outline-primary d-flex justify-content-end mt-4 ms-auto" id="">提交</button>
+            </div>
+            <div class="col-6 bg-warning"></div>
+        </div>
+    </div>
+
+    <!-- <section>
+        <div class="container">
+            <div class="row bg-black" style="height: 22vh;">
+                <h1 class="text-light">課程video</h1>
+                <div class=""></div>
+            </div>
+        </div>
+    </section> -->
+    
+
+    <section>
+        <div class="container">
+            <div class="row">
+
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container-fluid">
+            <div class="fixed-bottom bg-dark py-3 text-center">
+                <h5 class="text-light fw-700">有其他問題請聯絡補習班</h5>
+                <div class="row justify-content-center">
+                    <div class="col-auto">
+                        <span>
+                            <p class="text-light"><i class="fa-solid fa-phone"></i>&nbsp; 25xx-xxxx</p>
+                        </span>
+                    </div>
+                    <div class="col-auto">
+                        <span>
+                            <a href="#" target="_blank" class="text-decoration-none text-light"><i class="fa-brands fa-facebook"></i>XX教育中心</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

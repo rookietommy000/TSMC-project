@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200;300;400;500;600;700;900&display=swap');
+
+body {
+    font-family: 'Noto Serif TC', serif;
+}
+
+:root {
+    --emerald01: #d1edd1;
+    --emerald02: #7bc5ae;
+    --emerald03: #028c6a;
+    --emerald04: #003e19;
+    --sea01: #97baa4;
+    --sea02: #499360;
+    --sea03: #ffffff;
+    --sea04: #e2e784;
+    --mycolor01: rgb(173, 165, 207);
+    --mycolor02: rgb(125, 205, 160);
+    --mycolor03: rgb(62, 181, 233);
+    --mycolor04: rgb(139, 147, 150);
+    --mycolor05: #062ea3;
+    --textcolor01:rgba(0,0,0,.3);
+    --textcolor02:rgba(240, 114, 25, 0.2);
+    --textcolor03:rgba(232, 20, 77, 0.2);
+    --textcolor04:#f00aab;
+
+
+}
+
+.fw-100 {
+    font-weight: 100;
+}
+
+.fw-200 {
+    font-weight: 200;
+}
+
+.fw-300 {
+    font-weight: 300;
+}
+
+.fw-400 {
+    font-weight: 400;
+}
+
+.fw-500 {
+    font-weight: 500;
+}
+
+.fw-600 {
+    font-weight: 600;
+}
+
+.fw-700 {
+    font-weight: 700;
+}
+
+.fw-800 {
+    font-weight: 800;
+}
+
+.fw-900 {
+    font-weight: 900;
+}
+
+.dela {
+    font-weight: 400;
+}
+
+.mr-1{
+    margin-right: 1px;
+}
+
+.mr-2{
+    margin-right: 2px;
+}
+
+.mr-3{
+    margin-right: 3px;
+}
+
+.bg-cover{
+    background-position: center center;
+    background-size: cover;
+}
+
+.demo{
+    width: 70%;
+    padding: 25px;
+    margin: 25px;
+    border: 2px dotted var(--emerald03)
+}

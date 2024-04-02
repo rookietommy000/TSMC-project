@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>產品頁</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/myall.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/counter.css">
+    <link rel="stylesheet" href="css/product.css">
+    <link rel="stylesheet" href="css/light.css">
+    <link rel="stylesheet" href="css/sweetalert2.min.css">
+    <style>
+        .box01 {
+            background-color: var(--mycolor01);
+            padding: 20px;
+            box-shadow: 3px 3px 3px black;
+            height: 300px;
+            border-radius: 35px;
+            margin-right: auto;
+            margin-bottom: 35px;
+        }
+
+        .table {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 500px;
+            /* 設置最大寬度 */
+            margin: 0 auto;
+            /* 水平置中 */
+        }
+
+        .table th,
+        .table td {
+            /* 細線邊框 */
+            padding: 8px;
+            /* 內邊距 */
+            text-align: left;
+            /* 文字靠左對齊 */
+        }
+
+        .table th {
+            background-color: #f2f2f2;
+            /* 灰色背景色 */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- section 02 -->
+    <section id="s02">
+        <nav class="navbar navbar-expand-lg section02-bg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="project_index.html" class="fs-6">
+                    <i class="fa-brands fa-pagelines text-success-emphasis fa-2x wow animate__bounceInLeft"
+                        data-wow-duration="3s" data-wow-delay="0s" data-wow-iteration="infinite"></i> 首頁
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle section01-text fw-500" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                關於我們
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item section01-text" href="project_about.html">特色簡介</a></li>
+                                <li><a class="dropdown-item section01-text" href="project_about.html">發展歷程</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item section01-text" href="#" target="_blank">想要更了解我們</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="project_plant.html">購買商品</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#s10">加入我們</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="project_member.html" id="member_btn">會員中心</a>
+                        </li>
+                    </ul>
+                    </li>
+                    <div>
+                        <span class="text-primary h3" id="user_message"></span>
+                        <button class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#loginModal"
+                            id="loginButton">登入</button>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal"
+                            id="registerButton">註冊</button>
+                        <button class="btn btn-outline-warning d-none" data-bs-toggle="modal"
+                            data-bs-target="#registerModal" id="loginoutButton">登出</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </section>
+
+    <!-- section 02 loginModal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <h5 class="modal-title" id="exampleModalLabel">會員登入</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
+                                type="button" role="tab" aria-controls="home" aria-selected="true">會員</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
+                                type="button" role="tab" aria-controls="profile" aria-selected="false">管理員</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="mb-3">
+                                <label for="" class="form-label">帳號</label>
+                                <input type="text" class="form-control" id="login_username" name="login_username">
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label">密碼</label>
+                                <input type="password" class="form-control" id="login_password" name="login_password">
+                            </div>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary" id="login_btn">確認</button>
+                            <div class="d-flex justify-content-end">
+                                <span style="background-color: #86c9f8;" class="p-1">
+                                    <a href="#registerModal" class="text-decoration-none text-dark">還沒加入會員嗎？<i
+                                            class="fa-solid fa-location-arrow"></i>
+                                    </a>
+                                </span>
+                            </div>
+                            <!-- </div>
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <div class="mb-3">
+                                <label for="" class="form-label">帳號</label>
+                                <input type="text" class="form-control" id="mlogin_username" name="mlogin_username">
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label">密碼</label>
+                                <input type="password" class="form-control" id="mlogin_password" name="mlogin_password">
+                            </div>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary" id="mlogin_btn">確認</button>
+                        </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- section 02 registerModal -->
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header text-bg-danger">
+                    <h1 class="modal-title fs-5 fw-900" id="exampleModalLabel">會員註冊</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body line-section">
+                    <div class="row">
+                        <div class="col-6">
+                            <h2>會員守則</h2>
+                            <p>1.尊重他人： 會員應該尊重其他成員的權利、意見和觀點。這包括言論的尊重、避免歧視和尊重隱私。</p>
+                            <hr>
+                            <p>2.合法和道德行為： 會員守則通常會明確表示成員必須遵守當地法律和道德標準。這包括禁止參與非法活動或違反道德規範。</p>
+                            <hr>
+                            <p>3.不濫用權力： 如果組織中有層級結構，會員守則可能要求成員不得濫用其權力或地位，並且要求公平和公正對待其他成員。</p>
+                            <hr>
+                            <p>4.禁止騷擾和歧視： 守則通常會嚴禁任何形式的騷擾、歧視或侮辱行為，以維護一個友好和安全的環境。</p>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="chk01" name="chk01">
+                                <label class="form-check-label" for="chk01">
+                                    同意
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="username" class="form-label">帳號</label>
+                                <input type="text" class="form-control" placeholder="帳號字數4~8" id="username"
+                                    name="username">
+                                <div class="valid-feedback">帳號符合規則</div>
+                                <div class="invalid-feedback">帳號不符合規則</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">密碼</label>
+                                <input type="password" class="form-control" placeholder="密碼字數5~10" id="password"
+                                    name="password">
+                                <div class="valid-feedback">密碼符合規則</div>
+                                <div class="invalid-feedback">密碼不符合規則</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label">確認密碼</label>
+                                <input type="password" class="form-control" placeholder="確認密碼！" id="re_password">
+                                <div class="valid-feedback">密碼一致</div>
+                                <div class="invalid-feedback">密碼不一致</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label">Email</label>
+                                <input type="email" class="form-control" placeholder="Email字數6~20" id="email"
+                                    name="email">
+                                <div class="valid-feedback">Email符合規定</div>
+                                <div class="invalid-feedback">Email不符合規定</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="reg_btn">註冊</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- section 03 商品 -->
+    <div class="container" style="z-index: 9999;">
+        <select class="col-3 form-select mt-3 fs-4 mb-3" id="type">
+            <option selected disabled>商品種類</option>
+        </select>
+        </h4>
+        <div class="row" id="myplants">
+            <div class="col-md-4">
+                <div class="box01 bg-cover mt-2 mb-3" style="background-image: url(images/plant01.jpg);"></div>
+                <hr>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>資料 1</th>
+                        </tr>
+                        <tr>
+                            <td>內容1</td>
+                        </tr>
+                        <tr>
+                            <td>內容1</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- 其他 col-md-4 的內容 -->
+        </div>
+    </div>
+
+
+
+
+    <!-- footer -->
+    <section>
+        <footer id="footer"></footer>
+    </section>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/front/front.js"></script>
+    <script src="js/light.js"></script>
+    <script src="js/sweetalert2.all.min.js"></script>
+    <!-- footer&navbar -->
+
+    <script>
+        $(function () {
+            $.ajax({
+                type: "GET",
+                url: "api/product/product_read-api.php",
+                success: showdata,
+                error: function () {
+                    alert("串接失敗！")
+                }
+            });
+        });
+
+        function showdata(response) {
+            var jsonData = JSON.parse(response);
+            var items = jsonData.data;
+            var categories = {};
+            console.log(items);
+
+            items.forEach(function (item) {
+                categories[item.Name] = true; // 儲存種類
+            });
+
+            var updateTypeSelect = $('#type');
+            updateTypeSelect.empty();
+            updateTypeSelect.append('<option selected disabled>商品種類</option>');
+            Object.keys(categories).forEach(function (category) {
+                var option = $('<option>').text(category).val(category);
+                updateTypeSelect.append(option);
+            });
+
+            // 绑定change事件到<select>元素，以便于在选择不同分类时调用drawCategory函数
+            updateTypeSelect.on('change', function () {
+                var selectedCategory = $(this).val();
+                drawCategory(selectedCategory, items);
+            });
+            drawCategory(null, items);
+        }
+
+
+        // showdata(response); // 假设response是AJAX响应的JSON字符串
+        function drawCategory(categoryName, items) {
+            var container = $('#myplants');
+            container.empty(); // 清空当前商品列表
+
+            // 找出分類
+            var categoryItems;
+            if (categoryName === null) {
+                categoryItems = items;
+            } else {
+                categoryItems = items.filter(function (item) {
+                    return item.Name === categoryName;
+                });
+            }
+
+            // 为所选分类的每个商品创建HTML，并添加到页面
+            categoryItems.forEach(function (item) {
+                var strHTML = '<div class="col-md-4 mb-2">' +
+                    '<div class="box01 bg-cover"  style="background-image: url(\'http://192.168.10.51/project/upload/' + item.pimage + '\');"></div>' +
+                    '<table class="table"><tbody><tr><th>' + item.pname + '</th></tr><tr><td>' +
+                    item.content + '</td></tr><tr><td class="mb-5">' +
+                    item.pprice + ' 元  /  ' +
+                    item.num01 + '  盆 </td></tr></tbody></table> </div>';
+                container.append(strHTML);
+            });
+        }
+
+    </script>
+
+
+
+</body>
+
+</html>

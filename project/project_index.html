@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>專案</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/myall.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/icon.css">
+    <link rel="stylesheet" href="css/counter.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="css/sweetalert2.min.css">
+    <style>
+        .accordion-button {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .time-text {
+            margin-left: auto;
+        }
+
+        .swiper-slide {
+            width: auto;
+            font-size: 24px;
+            background-color: rgba(36, 207, 223, 0.1);
+            color: rgb(0, 0, 0, 0.6);
+        }
+
+        .swiper-wrapper {
+            transition-timing-function: linear;
+        }
+
+        .banner {
+            height: 320px;
+            background-image: url(images/bgi01.jpg);
+        }
+
+        .s05_text01 {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: var(--sea03);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 3px 3px 8px 2px var(--emerald01);
+        }
+
+        .box01 {
+            background-color: rgba(21, 92, 99, 0.2);
+            color: var(--sea03);
+            padding: 20px;
+            height: 280px;
+            border-radius: 10px;
+            padding: 20px;
+            color: black;
+        }
+
+        .box03 {
+            background-color: rgba(250, 172, 62, 0.5);
+            padding: 20px;
+            box-shadow: 3px 3px 8px 2px var(--mycolor04);
+            height: 300px;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .box05 {
+            z-index: 1;
+            position: fixed;
+            bottom: 0;
+            right: 5px;
+        }
+
+        .pimg:hover {
+            box-shadow: 3px 3px 3px var(--mycolor04);
+            border-radius: 15%;
+        }
+
+        .img01 {
+            height: 280px;
+            background-image: url(images/bgi01.jpg);
+        }
+
+        .img02 {
+            height: 280px;
+            background-image: url(images/bgi02.jpg);
+        }
+
+        .timeline-section {
+            position: relative;
+        }
+
+        .timeline-section::before {
+            position: absolute;
+            content: "";
+            top: 10px;
+            bottom: 0;
+            width: 15px;
+            background-color: var(--sea02);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .timeline-section-pointer {
+            position: relative;
+        }
+
+        .timeline-section-pointer::before {
+            position: absolute;
+            content: "";
+            width: 25px;
+            height: 25px;
+            background-color: var(--sea03);
+            top: 0;
+            border-radius: 50%;
+            border: 8px solid var(--textcolor04);
+        }
+
+        .timeline-section-pointer:hover::before {
+            width: 30px;
+            height: 30px;
+            background-color: var(--sea03);
+            border: 8px solid var(--mycolor01);
+        }
+
+        .side-id {
+            z-index: 2;
+            position: fixed;
+            background-color: var(--mycolor03);
+            border-radius: 50%;
+            right: 0%;
+            height: 20px;
+            width: 20px;
+            bottom: 50%;
+        }
+
+        .side-id:hover {
+            background-color: var(--sea04);
+        }
+
+        @media screen and (max-width: 768px) {
+            .timeline-section-pointer::before {
+                display: none;
+            }
+
+            .timeline-section::before {
+                display: none;
+            }
+
+            .s07-img {
+                margin: 0;
+            }
+
+            .s07-text {
+                z-index: 10;
+                background-color: rgba(0, 0, 0, 0.5);
+                color: var(--sea03);
+                padding: 15px;
+                margin-bottom: 25px;
+            }
+
+            .box02 {
+                width: 400px
+            }
+
+            .s05_text01 {
+                width: 350px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 回到上方按鈕 -->
+    <button id="scrollToTopBtn" onclick="scrollToTop()"><i class="fa-solid fa-chevron-up"></i>
+        <div>回到上層</div>
+    </button>
+    <button id="scrollToBottomBtn" onclick="scrollToBottom()"><i class="fa-solid fa-chevron-down"></i>
+        <div>底部</div>
+    </button>
+
+    <!-- icon -->
+    <div class="icon-bar" style="z-index: 1;">
+        <a href="#" class="facebook"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#" class="twitter"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" class="google"><i class="fa-brands fa-google"></i></a>
+        <a href="#" class="linkedin"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="#" class="youtube"><i class="fa-brands fa-youtube"></i></a>
+    </div>
+
+    <section class="section01-bg">
+        <div class="container">
+            <div class="text-end">
+                <span><a href="#" class="text-decoration-none section01-text fw-400 mt-5">會員中心</a></span>
+                <span><a href="#"><i class="fa-brands fa-instagram section01-text fa-2x wow animate__bounceIn"
+                            data-wow-duration="4s" data-wow-iteration="infinite"></i></a></span>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- section 02 -->
+    <section id="s02">
+        <nav class="navbar navbar-expand-lg section02-bg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="project_index.html" class="fs-6">
+                    <i class="fa-brands fa-pagelines text-success-emphasis fa-2x wow animate__bounceInLeft"
+                        data-wow-duration="3s" data-wow-delay="0s" data-wow-iteration="infinite"></i> 首頁
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle section01-text fw-500" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                關於我們
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item section01-text" href="s05">特色簡介</a></li>
+                                <li><a class="dropdown-item section01-text" href="s06">發展歷程</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item section01-text" href="#" target="_blank">想要更了解我們</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="project_plant.html">購買商品</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#s10">加入我們</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="project_member.html" id="member_btn">會員中心</a>
+                        </li>
+                    </ul>
+                    </li>
+                    <div>
+                        <span class="text-primary h3" id="user_message"></span>
+                        <button class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#loginModal"
+                            id="loginButton">登入</button>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal"
+                            id="registerButton">註冊</button>
+                        <button class="btn btn-outline-warning d-none" data-bs-toggle="modal"
+                            data-bs-target="#registerModal" id="loginoutButton">登出</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </section>
+
+    <!-- section 02 loginModal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <h5 class="modal-title" id="exampleModalLabel">會員登入</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
+                                type="button" role="tab" aria-controls="home" aria-selected="true">會員</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
+                                type="button" role="tab" aria-controls="profile" aria-selected="false">管理員</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="mb-3">
+                                <label for="" class="form-label">帳號</label>
+                                <input type="text" class="form-control" id="login_username" name="login_username">
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label">密碼</label>
+                                <input type="password" class="form-control" id="login_password" name="login_password">
+                            </div>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary" id="login_btn">確認</button>
+                            <div class="d-flex justify-content-end">
+                                <span class="p-1">
+                                    <button class="fw-800" style="background-color: bisque;" id="addModal">還沒加入會員嗎？<i
+                                            class="fa-solid fa-location-arrow"></i>
+                                </span>
+                            </div>
+                            <!-- </div>
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <div class="mb-3">
+                                <label for="" class="form-label">帳號</label>
+                                <input type="text" class="form-control" id="mlogin_username" name="mlogin_username">
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label">密碼</label>
+                                <input type="password" class="form-control" id="mlogin_password" name="mlogin_password">
+                            </div>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary" id="mlogin_btn">確認</button>
+                        </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- section 02 registerModal -->
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header text-bg-danger">
+                    <h1 class="modal-title fs-5 fw-900" id="exampleModalLabel">會員註冊</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body line-section">
+                    <div class="row">
+                        <div class="col-6">
+                            <h2>會員守則</h2>
+                            <p>1.尊重他人： 會員應該尊重其他成員的權利、意見和觀點。這包括言論的尊重、避免歧視和尊重隱私。</p>
+                            <hr>
+                            <p>2.合法和道德行為： 會員守則通常會明確表示成員必須遵守當地法律和道德標準。這包括禁止參與非法活動或違反道德規範。</p>
+                            <hr>
+                            <p>3.不濫用權力： 如果組織中有層級結構，會員守則可能要求成員不得濫用其權力或地位，並且要求公平和公正對待其他成員。</p>
+                            <hr>
+                            <p>4.禁止騷擾和歧視： 守則通常會嚴禁任何形式的騷擾、歧視或侮辱行為，以維護一個友好和安全的環境。</p>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="chk01" name="chk01">
+                                <label class="form-check-label" for="chk01">
+                                    同意
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="username" class="form-label">帳號</label>
+                                <input type="text" class="form-control" placeholder="帳號字數4~8" id="username"
+                                    name="username">
+                                <div class="valid-feedback">帳號符合規則</div>
+                                <div class="invalid-feedback">帳號不符合規則</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">密碼</label>
+                                <input type="password" class="form-control" placeholder="密碼字數5~10" id="password"
+                                    name="password">
+                                <div class="valid-feedback">密碼符合規則</div>
+                                <div class="invalid-feedback">密碼不符合規則</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label">確認密碼</label>
+                                <input type="password" class="form-control" placeholder="確認密碼！" id="re_password">
+                                <div class="valid-feedback">密碼一致</div>
+                                <div class="invalid-feedback">密碼不一致</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label">Email</label>
+                                <input type="email" class="form-control" placeholder="Email字數6~20" id="email"
+                                    name="email">
+                                <div class="valid-feedback">Email符合規定</div>
+                                <div class="invalid-feedback">Email不符合規定</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="reg_btn">註冊</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slider main container -->
+    <section>
+        <div class="swiper ">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+                <!-- Slides -->
+                <div class="swiper-slide fw-500">
+                    自然生機，植根愛心。綠意盎然，花開富貴。與大自然共舞，尋找平靜和美。捧一束花，送給心愛的人。讓綠色填滿生活，為環保盡一份心力。用心栽培，擁抱生活的美好。與植物共生，感受大自然的奧秘</div>
+                <i class="fa-solid fa-motorcycle"></i>
+                <div class="swiper-slide">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- section 03  幻燈片-->
+    <!-- data-bs-ride="carousel" data-bs-interval="5000"幻燈片自動轉換 -->
+    <section>
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
+            <div class="carousel-indicators" style="z-index: -1;">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3"
+                    aria-label="Slide 4"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4"
+                    aria-label="Slide 5"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item bg-cover active"
+                    style="background-image: url(images/slide01.jpg); height: 100vh;">
+                    <div class="carousel-caption d-none d-md-block p-4 rounded-5 shadow-sm wow animate__fadeIn"
+                        data-wow-duration="2s" data-wow-iteration="infinite">
+                        <h5 class="fw-900">周年慶優惠方案001</h5>
+                        <p class="fw-500">
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item bg-cover" style="background-image: url(images/slide02.jpg); height: 100vh;">
+                    <div class="carousel-caption d-none d-md-block p-4 rounded-5 shadow-sm wow animate__fadeIn"
+                        data-wow-duration="2s" data-wow-iteration="infinite">
+                        <h5 class="fw-900">周年慶優惠方案002</h5>
+                        <p class="fw-500">
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item bg-cover" style="background-image: url(images/slide03.jpg); height: 100vh;">
+                    <div class="carousel-caption d-none d-md-block p-4 rounded-5 shadow-sm wow animate__fadeIn"
+                        data-wow-duration="2s" data-wow-iteration="infinite">
+                        <h5 class="fw-900">周年慶優惠方案003</h5>
+                        <p class="fw-500">
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item bg-cover" style="background-image: url(images/slide04.jpg); height: 100vh;">
+                    <div class="carousel-caption d-none d-md-block p-4 rounded-5 shadow-sm wow animate__fadeIn"
+                        data-wow-duration="2s" data-wow-iteration="infinite">
+                        <h5 class="fw-900">周年慶優惠方案004</h5>
+                        <p class="fw-500">
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item bg-cover" style="background-image: url(images/slide05.jpg); height: 100vh;">
+                    <div class="carousel-caption d-none d-md-block p-4 rounded-5 shadow-sm wow animate__fadeIn"
+                        data-wow-duration="2s" data-wow-iteration="infinite">
+                        <h5 class="fw-900">周年慶優惠方案005</h5>
+                        <p class="fw-500">
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- section 04  最新消息 -->
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="container mt-5">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active fw-900" style="font-size: 20px;" aria-current="page"
+                                data-bs-toggle="tab" href="#tab1">最新消息</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-900" style="font-size: 20px;" data-bs-toggle="tab"
+                                href="#tab2">購物須知</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content mt-2">
+                        <div class="tab-pane fade show active" id="tab1">
+                            <div class="accordion" id="accordionExample">
+                                <div id="mydata">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="tab2">
+                            <div class="row mt-4" id="tab2">
+                                <div class="tab-content">
+                                    <div class="tab-pane fade show active">
+                                        <div class="">
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th>日照需求</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>確保你選擇的植栽與你的居住環境相符，包括陽光和陰影的需求。有些植物需要陽光充足，而有些則可以在陰涼的地方生長。
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                                <thead>
+                                                    <tr>
+                                                        <th>水分需求</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td> 了解植栽的澆水需求。有些植物需要保持濕潤，而有些則對乾旱更耐受。確保你有足夠的時間來滿足它們的水分需求。
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                                <thead>
+                                                    <tr>
+                                                        <th>成熟尺寸</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td> 考慮植栽的預期成熟尺寸，以確保它能夠適應你的居住空間。有些植物在成熟時可能變得比預期的要大。</td>
+                                                    </tr>
+                                                </tbody>
+                                                <thead>
+                                                    <tr>
+                                                        <th>季節性變化</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td> 了解植栽是否會在不同季節發生變化，以及這些變化是否符合你的喜好和環境</td>
+                                                    </tr>
+                                                </tbody>
+                                                <thead>
+                                                    <tr>
+                                                        <th>當地氣候</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td> 考慮你所在地區的氣候，選擇能夠適應當地氣候的植栽，以確保它們在特定季節能夠生長良好。</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <h4
+                                                class="mt-3 fw-500 text-bg-dark text-light p-2 text-center rounded rounded-3">
+                                                這些建議能夠幫助你在購買植栽時做出更明智的選擇，並確保你的植物能夠在新的環境中茁壯成長。</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- section 05 特色介紹 -->
+    <section id="s05" class="mt-3 py-5 wow animate__lightSpeedInRight" style="background-color: aliceblue;"
+        data-wow-duration="10s" data-wow-iteration="1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 text-center fw-900">
+                    <i class="fa-solid fa-list-ul fa-5x text-secondary"></i>
+                    <h3 class="text-dark my-4 fw-800">專業知識和服務</h3>
+                    <p class="text-success">園藝店通常擁有專業的園藝師或顧問，可以提供客戶專業的植物種植和護理建議，幫助客戶選擇適合他們需求和環境的植物。</p>
+                </div>
+                <div class="col-md-4 text-center fw-900">
+                    <i class="fa-solid fa-leaf fa-5x text-success"></i>
+                    <h3 class="text-dark my-4 fw-800">多樣的植物</h3>
+                    <p class="text-success">園藝店通常擁有豐富多樣的植物和相關產品，包括各種室內和室外植物、花卉、種子、肥料、盆栽等，滿足客戶不同的園藝需求。</p>
+                </div>
+                <div class="col-md-4 text-center fw-900">
+                    <i class="fa-solid fa-map-location-dot fa-5x text-primary"></i>
+                    <h3 class="text-dark my-4 fw-800">社區參與和活動</h3>
+                    <p class="text-success">一些園藝店可能舉辦園藝講座、工作坊、植物交換活動等，促進社區內園藝愛好者之間的交流和學習。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- section 公司沿革-->
+    <section id="s06" class="bg-cover"
+        style="background-image: linear-gradient(10deg, rgba(255, 255, 255, 0.6), rgb(255, 255, 255, 1)), url(images/bgi02.jpg);  background-attachment: fixed; background-size: cover;  background-position: center center;; background-size: cover; background-position: -200px center; z-index: 9999; padding-bottom: 5%;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="py-5">
+                    <div class="timeline-section">
+                        <div class="row mt-3 justify-content-center align-items-center timeline-section-pointer">
+                            <div class="col-md-6 box01">
+                                <h3 class="fw-900">業務計劃和研究</h3>
+                                <p class="fw-300 fs-5">
+                                    在開始建立園藝店之前，您需要進行業務計劃和研究。這包括了解市場需求、競爭環境、目標客戶群等。您需要確定您的業務模式，例如是提供園藝產品還是提供園藝設計和維護服務
+                                </p>
+                            </div>
+                            <div class="col-md-6 bg-cover img01 wow animate__fadeInRightBig" data-wow-duration="2s"
+                                data-wow-iteration="1" style="background-image: url(images/slide01.jpg);"></div>
+                            <div class="col-md-6"></div>
+                        </div>
+                        <div
+                            class="row mt-3 justify-content-center align-items-center flex-row-reverse timeline-section-pointer">
+                            <div class="col-md-6 box01">
+                                <h3 class="fw-900">尋找適合的位置</h3>
+                                <p class="fw-300 fs-5">
+                                    選擇一個適合的位置對於您的園藝店至關重要。您需要考慮地點的可見性、交通便利性、租金成本等因素。此外，店面的大小和佈局也是需要考慮的因素，確保它能夠容納您的植物和園藝產品
+                                </p>
+                            </div>
+                            <div class="col-md-6 bg-cover img01 wow animate__fadeInLeftBig" data-wow-duration="2s"
+                                data-wow-iteration="1" style="background-image: url(images/slide02.jpg);"></div>
+                            <div class="col-md-6"></div>
+                        </div>
+                        <div class="row mt-3 justify-content-center align-items-center timeline-section-pointer">
+                            <div class="col-md-6 box01">
+                                <h3 class="fw-900">獲取許可和註冊</h3>
+                                <p class="fw-300 fs-5">
+                                    在開業之前，您需要獲取相應的許可證和註冊。這可能包括營業執照、稅務登記等。確保您了解當地政府的法規要求並遵守相關規定
+                                </p>
+                            </div>
+                            <div class="col-md-6 bg-cover img01 wow animate__fadeInRightBig" data-wow-duration="2s"
+                                data-wow-iteration="1" style="background-image: url(images/slide03.jpg);"></div>
+                            <div class="col-md-6"></div>
+                        </div>
+                        <div
+                            class="row mt-3 justify-content-center align-items-center flex-row-reverse timeline-section-pointer">
+                            <div class="col-md-6 box01">
+                                <h3 class="fw-900">設計和裝修店面</h3>
+                                <p class="fw-300 fs-5">
+                                    一旦您確定了店面的位置，您需要設計和裝修店面。這包括店面的設計佈局、裝修工程、設備購買等。確保店面的設計符合您的品牌形象和顧客需求
+                                </p>
+                            </div>
+                            <div class="col-md-6 bg-cover img01 wow animate__fadeInLeftBig" data-wow-duration="2s"
+                                data-wow-iteration="1" style="background-image: url(images/slide04.jpg);"></div>
+                            <div class="col-md-6"></div>
+                        </div>
+                        <div class="row mt-3 justify-content-center align-items-center timeline-section-pointer">
+                            <div class="col-md-6 box01">
+                                <h3 class="fw-900">庫存採購</h3>
+                                <p class="fw-300 fs-5">
+                                    最後，您需要準備您的庫存。這包括植物、園藝工具、肥料、花盆等。確保您的庫存能夠滿足您的客戶需求，同時也要考慮庫存管理和補貨的問題
+                                </p>
+                            </div>
+                            <div class="col-md-6 bg-cover img01 wow animate__fadeInRightBig" data-wow-duration="2s"
+                                data-wow-iteration="1" style="background-image: url(images/slide05.jpg);"></div>
+                            <div class="col-md-6"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- 實際地點 -->
+    <section id="s07">
+        <div class="d-flex align-items-center justify-content-center">
+            <a href="#">
+                <div class="mt-4 d-inline-block bg-info border border-2 border-dark rounded-2 p-2" style="width: auto;">
+                    <h4 class="fw-800 text-center" style="font-size: 30px;">植物的家</h4>
+                </div>
+            </a>
+        </div>
+        <main>
+            <div class="row mt-4 mb-3">
+                <div class="transport-option col-4" id="carOption" data-bs-toggle="modal" data-bs-target="#carModal">
+                    <h2>開車</h2>
+                    <p>預估時間：30分鐘</p>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="carModal" tabindex="-1" aria-labelledby="carModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="carModalLabel">開車路線</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <h5 class="text-secondary text-center">路線圖</h5>
+                                <a href="https://www.google.com/maps/dir/?api=1&origin=台中車站&destination=臺中國家歌劇院&travelmode=bicycling"
+                                    target="_blank">
+                                    <img src="images/map01.jpg" alt="" class="img-fluid">
+                                </a>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="transport-option col-4" id="carOption" data-bs-toggle="modal" data-bs-target="#carModal">
+                    <h2>公車</h2>
+                    <p>預估時間：45分鐘</p>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="carModal" tabindex="-1" aria-labelledby="carModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="carModalLabel">公車路線</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <h5 class="text-secondary text-center">路線圖</h5>
+                                <a href="https://www.google.com/maps/dir/?api=1&origin=台中車站&destination=臺中國家歌劇院&travelmode=bicycling"
+                                    target="_blank">
+                                    <img src="images/map01.jpg" alt="" class="img-fluid">
+                                </a>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="transport-option col-4" id="carOption" data-bs-toggle="modal" data-bs-target="#carModal">
+                    <h2>自行車</h2>
+                    <p>預估時間：1小時</p>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="carModal" tabindex="-1" aria-labelledby="carModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="carModalLabel">自行車路線</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <h5 class="text-secondary text-center">路線圖</h5>
+                                <a href="https://www.google.com/maps/dir/?api=1&origin=台中車站&destination=臺中國家歌劇院&travelmode=bicycling"
+                                    target="_blank">
+                                    <img src="images/map01.jpg" alt="" class="img-fluid">
+                                </a>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="map" class="map mb-5" style="height: 30vh;">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29120.916140967794!2d120.61289930000001!3d24.16771625!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34693dec4ca3a271%3A0xd8b5a337271e60e2!2z6Ie65Lit5ZyL5a625q2M5YqH6Zmi!5e0!3m2!1szh-TW!2stw!4v1704328760841!5m2!1szh-TW!2stw"
+                    width="100%" height="550" style="border: 2px solid rgb(72, 27, 146);" allowfullscreen=""
+                    loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="wow animate__fadeInTopLeft"
+                    data-wow-duration="4s" data-wow-iteration="1"></iframe>
+            </div>
+        </main>
+    </section>
+
+    <div style="height: 25vh;"></div>
+
+    <section id="s10">
+        <div class="row mt-5">
+            <div class="col-md-6 py-5 bg-cover" style="background-image: url(images/person03.jpg);">
+                <div class="row">
+                    <div class="col-md-9 p-4 ms-5 rounded-5 box02 wow animate__bounceIn" data-wow-duration="3s"
+                        data-wow-iteration="1" style="background-color: rgba(0, 0, 0, 0.5);">
+                        <small class="text-bg-warning fw-800 badge mb-2">加入我們</small>
+                        <h2 class="text-white fw-900">徵才 - 銷售經理數名</h2>
+                        <p class="fw-400 text-white">1.日常運營： 負責店鋪的日常管理，確保店內活動順利進行。<br>
+                            2.人員管理： 招聘、培訓和監督店內員工，確保團隊的高效運作。<br>
+                            3.庫存管理： 監控庫存水平，確保產品供應充足，並防止庫存損失。<br>
+                            4.銷售和目標達成： 制定和實施銷售策略，確保達到或超越銷售目標。<br>
+                            5.客戶服務： 確保提供卓越的客戶服務，解決客戶問題並維護良好的顧客關係。<br></p>
+                        <a href="#" class="btn btn-outline-info offset-5 fw-600">詳細資料</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 py-5 bg-cover" style="background-image: url(images/person07.jpg);">
+                <div class="row">
+                    <div class="col-md-9 p-4 ms-5 rounded-5 box02 wow animate__bounceIn" data-wow-duration="3s"
+                        data-wow-iteration="1" style="background-color: rgba(0, 0, 0, 0.5);">
+                        <small class="text-bg-warning fw-800 badge mb-2">加入我們</small>
+                        <h2 class="text-white fw-900">徵才 - 市場經理一位</h2>
+                        <p class="fw-400 text-white">1.市場策略制定： 制定組織的市場策略，包括目標市場、定位、價格策略等。<br>
+                            2.市場推廣： 設計和執行多樣化的市場推廣活動，以提升品牌知名度和促進銷售。<br>
+                            3.產品定位： 研究市場需求，確定產品在市場上的定位，並提供相應的市場分析。<br>
+                            4.競爭分析： 監測競爭對手的動向，分析市場趨勢，提出應對策略。<br>
+                            5.線上營銷： 負責線上推廣，包括社交媒體營銷、內容營銷、電子郵件營銷等。<br>
+                            <a href="#" class="btn btn-outline-info offset-4 fw-600 mt-2">詳細資料</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- section04 footer-->
+    <section>
+        <footer id="footer"></footer>
+    </section>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js">	</script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="js/scoll.js"></script>
+    <script src="js/sweetalert2.all.min.js"></script>
+
+    <script>
+
+        $('#addModal').on('click', function () {
+            $('#loginModal').modal('hide');
+            $('#registerModal').modal('show');
+        });
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Error fetching footer:', error);
+            });
+        // 監聽確認
+        var flag_username = false;
+        var flag_password = false;
+        var flag_re_password = false;
+        var flag_email = false;
+        var flag_chk01 = false;
+
+        // 即時監聽 #username
+        $("#username").bind("input propertychange", function () {
+            // console.log($(this).val().length); is-invalid
+            if ($(this).val().length > 3 && $(this).val().length < 8) {
+                //符合規定，傳遞參數到後端檢查帳號是否有存在
+                var dataJSON = {};
+                dataJSON["Username"] = $("#username").val();
+                console.log(JSON.stringify(dataJSON));
+
+                $.ajax({
+                    type: "POST",
+                    url: "api/member_check-api.php",
+                    data: JSON.stringify(dataJSON),
+                    dataType: "json",
+                    success: showdata_username,
+                    error: function () {
+                        alert("error-api/member_check-api.php");
+                    }
+                });
+
+                // $(this).removeClass('is-invalid');
+                // $(this).addClass('is-valid');
+                // flag_username = true;
+            } else {
+                //不符合規定
+                $(this).removeClass('is-valid');
+                $(this).addClass('is-invalid');
+                flag_username = false;
+            }
+        });
+
+        // 即時監聽 #password
+        $("#password").bind("input propertychange", function () {
+            // console.log($(this).val().length); is-invalid
+            if ($(this).val().length > 5 && $(this).val().length < 10) {
+                //符合規定
+                $(this).removeClass('is-invalid');
+                $(this).addClass('is-valid');
+                flag_password = true;
+            } else {
+                //不符合規定
+                $(this).removeClass('is-valid');
+                $(this).addClass('is-invalid');
+                flag_password = false;
+            }
+        });
+        // 即時監聽 #re_password
+        $("#re_password").bind("input propertychange", function () {
+            if ($(this).val() == $("#password").val()) {
+                //符合規定
+                $(this).removeClass('is-invalid');
+                $(this).addClass('is-valid');
+                flag_re_password = true;
+            } else {
+                //不符合規定
+                $(this).removeClass('is-valid');
+                $(this).addClass('is-invalid');
+                flag_re_password = false;
+            }
+        });
+
+        // 即時監聽 #email
+        $("#email").bind("input propertychange", function () {
+            // console.log($(this).val().length); is-invalid
+            if ($(this).val().length > 6 && $(this).val().length < 20) {
+                //符合規定
+                $(this).removeClass('is-invalid');
+                $(this).addClass('is-valid');
+                flag_email = true;
+            } else {
+                //不符合規定
+                $(this).removeClass('is-valid');
+                $(this).addClass('is-invalid');
+                flag_email = false;
+            }
+        });
+
+        // 監聽 checkbox #chk01
+        $("#chk01").change(function () {
+            if ($(this).is(":checked")) {
+                //console.log("遵守");
+                flag_chk01 = true;
+            } else {
+                //console.log("不遵守");  
+                flag_chk01 = false;
+            }
+        });
+        // 註冊按鈕監聽 #reg_btn
+        $("#reg_btn").click(function () {
+            // console.log("test");
+
+            if (flag_username && flag_password && flag_re_password && flag_email && flag_chk01) {
+                //{"Username":"XX", "Password":"XXX", "Email":"XXXXX"}
+                var dataJSON = {};
+                dataJSON["Username"] = $("#username").val();
+                dataJSON["Password"] = $("#password").val();
+                dataJSON["Email"] = $("#email").val();
+
+                // 傳遞至後端執行註冊行為
+                $.ajax({
+                    type: "POST",
+                    url: "api/member_create-api.php",
+                    data: JSON.stringify(dataJSON),
+                    dataType: "json",
+                    success: showdata_reg,
+                    error: function () {
+                        alert("error-api/member_create-api.php")
+                    }
+                });
+
+            } else {
+                alert("欄位有錯請修正!");
+            }
+        });
+
+        function showdata_reg(data) {
+            console.log(data);
+            Swal.fire({
+                title: data.state ? '成功' : '失败',
+                text: data.message,
+                icon: data.state ? 'success' : 'error',
+                confirmButtonText: '確定'
+            }).then((result) => {
+                if (data.state) {
+                    location.reload();
+                }
+            });
+        }
+
+
+
+        function showdata_username(data) {
+            console.log(data);
+            if (data.state) {
+                //帳號不存在, 可以使用!
+                $("#username").removeClass('is-invalid');
+                $("#username").addClass('is-valid');
+                flag_username = true;
+                // 顯示帳號符合規則的訊息
+                $("#username + .valid-feedback").text("帳號不存在，可以使用").show();
+
+                // 隱藏帳號不符合規則的訊息
+                $("#username + .invalid-feedback").hide();
+            } else {
+                //帳號存在, 不可以使用!
+                $("#username").removeClass('is-valid');
+                $("#username").addClass('is-invalid');
+                flag_username = false;
+
+                $("#username + .invalid-feedback").text("帳號存在，不可以使用!").show();
+
+                // 隱藏帳號符合規則的訊息
+                $("#username + valid-feedback").hide();
+            }
+        }
+        $(function () {
+            // 判斷是否登入
+            if (getCookie("UID01") != "") {
+                // UID01存在，傳遞至後端api，判斷是否合法
+                var dataJSON = {};
+                dataJSON["UID01"] = getCookie("UID01");
+                console.log(JSON.stringify(dataJSON));
+                $.ajax({
+                    type: "POST",
+                    url: "api/member-check_UID01-api.php",
+                    data: JSON.stringify(dataJSON),
+                    dataType: "json",
+                    success: showdata_Check_UID,
+                    error: function () {
+                        alert("error-member-Check_UID-api.php");
+                    }
+                });
+            }
+
+            // 登出按鈕監聽 #loginoutButton
+            $("#loginoutButton").click(function () {
+                setCookie("UID01", "", 7);
+                location.reload();
+            });
+
+            // 登入按鈕監聽 #login_btn
+            $("#login_btn").click(function () {
+                console.log($("#login_username").val() + $("#login_password").val());
+                // {"Username":"XX", "Password":"XXX"}
+                var dataJSON = {};
+                dataJSON["Username"] = $("#login_username").val();
+                dataJSON["Password"] = $("#login_password").val();
+                console.log(JSON.stringify(dataJSON));
+
+                // 傳遞至後端執行登入行為
+                $.ajax({
+                    type: "POST",
+                    url: "api/member_login-api.php",
+                    data: JSON.stringify(dataJSON),
+                    dataType: "json",
+                    success: showdata_login,
+                    error: function () {
+                        alert("api/member_login-api.php");
+                    }
+                });
+            });
+        });
+
+        // w3s存入cookie
+        function setCookie(cname, cvalue, exdays) {
+            const d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            let expires = "expires=" + d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+
+        //w3s
+        function getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+        function showdata_login(data) {
+            console.log(data);
+            if (data.state) {
+                Swal.fire(data.message);
+                // console.log(data.data[0].UID01);
+                var uid01 = data.data[0].UID01;
+                // 將UID01放入cookie
+                setCookie("UID01", uid01, 7);
+                $("#loginModal").modal("hide");
+                $("#user_message").text(data.data[0].Username + "登入中！").addClass("text-light");
+
+                // 隱藏註冊按鈕和登入按鈕
+                $("#loginButton").hide();
+                $("#registerButton").hide();
+                $("#member_btn").removeClass("disabled");
+
+                // 顯示高級功能
+                $("#s02_member_btn02").removeClass("disabled");
+                $("#s02_member_btn03").removeClass("disabled");
+
+                // 顯示登出按鈕
+                $("#loginoutButton").removeClass("d-none");
+
+                // 顯示s04
+                $("#s04").removeClass("d-none")
+            } else {
+                Swal.fire(data.message);
+            }
+        }
+
+
+        function showdata_Check_UID(data) {
+            console.log(data);
+            if (data.state) {
+                //驗證成功
+                $("#user_message").text(data.data[0].Username + "登入中!").addClass("text-light");
+                $("#loginButton").hide();
+                $("#registerButton").hide();
+                $("#member_btn").removeClass("disabled");
+
+                // // 顯示高級功能
+
+                // $("#s02_member_btn02").removeClass("disabled");
+                // $("#s02_member_btn03").removeClass("disabled");
+
+                // 顯示登出按鈕
+                $("#loginoutButton").removeClass("d-none");
+
+                // 顯示s04
+                $("#s04").removeClass("d-none")
+            }
+        }
+
+
+
+    </script>
+
+    <script>
+        var newData = [];
+
+        const swiper = new Swiper(".swiper", {
+            slidesPerView: "auto", //一個view的投影片數量，預設為1。如果沒寫這個，若投影片文字過長就會換行
+            allowTouchMove: false, //不讓使用者觸碰移動slide
+            autoplay: {
+                delay: 0, //自動播放不延遲
+                disableOnInteraction: false //不因使用者觸碰而停止自動播放
+            },
+            loop: true, //反覆循環
+            speed: 8000 //投影片之間的過渡持續時間（以毫秒為單位），數字愈大跑愈慢
+        });
+
+        $(function () {
+            $.ajax({
+                type: "GET",
+                url: "api/news/news-read-api.php",
+                success: showNewsdata,
+                error: function () {
+                    alert("串接失敗！")
+                }
+            });
+        });
+        function showNewsdata(response) {
+            var jsonData = JSON.parse(response);
+            console.log(jsonData);
+            var items = jsonData.data;
+
+            var itemsToShow = Math.min(items.length, 5);
+
+            $('#mydata').empty();
+            for (i = 0; i < itemsToShow; i++) {
+                var strHTML = '<div class="accordion-item">' +
+                    '<h2 class="accordion-header" id="heading' + items[i].ID + '">' +
+                    '<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse' + items[i].ID + '" aria-expanded="false" aria-controls="collapse' + items[i].ID + '">' +
+                    '<span>' + items[i].Title + '</span>' +
+                    '<span class="time-text ms-auto fs-6">' + items[i].Created_at + '</span>' +
+                    '</button></h2>' +
+                    '<div id="collapse' + items[i].ID + '" class="accordion-collapse collapse" aria-labelledby="heading' + items[i].ID + '" data-bs-parent="#accordionExample">' +
+                    '<div class="accordion-body"><h3>' + items[i].Heading +
+                    '</h3><p>' + items[i].content +
+                    '</p></div></div>';
+
+
+
+                $('#mydata').append(strHTML);
+            }
+        }
+    </script>
+</body>
+
+</html>

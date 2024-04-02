@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>後台</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/sidebar.css">
+  <link rel="stylesheet" href="css/all.min.css">
+  <link rel="stylesheet" href="css/sweetalert2.min.css">
+  <style>
+    .box01 {
+      width: 150px;
+      height: auto;
+    }
+
+    #prevImg_update {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <a href="#" onclick="openTab(event, 'Home')">首頁</a>
+    <a href="admin-member.html" onclick="openTab(event, 'member')"><i class="fa-solid fa-user"></i>&nbsp;會員管理</a>
+    <a href="#" class="dropdown-toggle-split nav-link dropdown-toggle tab" data-bs-toggle="dropdown"
+      aria-expanded="false">
+      <i class="fa-brands fa-pagelines"></i>&nbsp;商品
+    </a>
+    <ul class="dropdown-menu">
+      <li><a href="admin-product.html" onclick="openTab(event, 'product')" class="text-dark">商品管理</a></li>
+      <li><a href="admin-product-type.html" onclick="openTab(event, 'product-type')" class="text-dark">類別總覽</a></li>
+    </ul>
+    <a href="admin-news.html" onclick="openTab(event, 'news')"><i class="fa-solid fa-rss"></i>&nbsp;消息管理</a>
+    <a href="#" onclick="openTab(event, 'cart')"><i class="fa-solid fa-chalkboard"></i>&nbsp;訂單管理</a>
+    <a class="nav-link disabled" aria-disabled="true">待定</a>
+  </div>
+
+  <div id="main">
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; 後臺管理</span>
+    <div class="col text-end">
+      <span class="text-dark h3" id="user_message"></span>
+      <button type="button" id="loginoutButton" class="btn btn-outline-danger">登出</button>
+    </div>
+    <div class="container-fluid">
+      <div class="container">
+        <div class="text-end mb-2">
+          <!-- <select id="type" class="form-select" aria-label="Default select example">
+            <option value="">全部分類</option>
+            <option value="1">分類1</option>
+          </select> -->
+        </div>
+        <div class="text-end">
+          <button class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#addModal">新增</button>
+        </div>
+        <table class="table table-bordered table-hover table-sm border-success table-rwd">
+          <caption class="text-end">商品列表</caption>
+          <thead class="table-dark">
+            <tr>
+              <th class="text-center" width="10%">編號</th>
+              <th class="text-center" width="10%">商品名稱</th>
+              <th class="text-center" width="10%">圖片</th>
+              <th class="text-center" width="10%">價錢</th>
+              <th class="text-center" width="10%">種類</th>
+              <th class="text-center" width="10%">數量</th>
+              <th class="text-center" width="20%">描述</th>
+              <th class="text-center" width="10%">狀態</th>
+              <th class="text-center" width="10%">建立時間</th>
+              <th width="10%"></th>
+            </tr>
+          </thead>
+          <tbody id="mydata">
+            <tr>
+              <td class="py-4"></td>
+              <td class="py-4"></td>
+              <td class="py-4"></td>
+              <td class="py-4"></td>
+              <td class="py-4"></td>
+              <td class="py-4"></td>
+              <td class="py-4"></td>
+              <td class="py-4"></td>
+              <td class="py-4"></td>
+              <td class="text-center py-4">
+                <div class="d-flex align-content-center justify-content-center">
+                  <button class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#updateModal">更新</button>
+                  <button class="btn btn-danger">刪除</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="container">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center" id="pageList">
+            <li class="page-item"><a class="page-link" href="#" onclick="drawTable(0)">1</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <!-- 新增商品 -->
+    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-black">
+            <h5 class="modal-title text-center fw-800 text-light" id="addModalLabel">新增商品</h5>
+            <button type="button" class="btn-close btn btn-close-white" data-bs-dismiss="modal"
+              aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="pname" class="form-label">商品名</label>
+              <input type="text" class="form-control" placeholder="" id="pname" name="pname">
+              <div class="valid-feedback">字數符合規定</div>
+              <div class="invalid-feedback">字數不符合規定</div>
+            </div>
+            <div class="mb-3">
+              <label for="pprice" class="form-label">價格</label>
+              <input type="number" class="form-control" placeholder="" id="pprice" name="pprice">
+            </div>
+            <div class="mb-3">
+              <label for="num01" class="form-label">數量</label>
+              <input type="number" class="form-control" placeholder="" id="num01" name="num01">
+              <div class="valid-feedback">字數符合規定</div>
+              <div class="invalid-feedback">字數不符合規定</div>
+            </div>
+            <div class="mb-3">
+              <label for="addType" class="col-2 form-label">種類</label>
+              <select class="col-3 form-select" id="addType">
+                <option selected disabled>請選擇種類</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="" class="form-label fw-800">商品圖</label>
+              <input type="file" class="form-control" id="fileupload" name="fileupload">
+              <img src="#" alt="" class="w-25 mt-3 d-none rounded-2" id="prevImg">
+            </div>
+            <div class="mb-3">
+              <label for="content" class="form-label">商品描述</label>
+              <textarea class="form-control" placeholder="商品特色&注意事項" id="content" style="height: 100px"></textarea>
+            </div>
+            <div class="mb-3">
+              <div class="form-check form-switch ">
+                <label for="switch01" class="form-check-label">商店上架</label>
+                <input type="checkbox" name="switch01" id="switch01" class="form-check-input">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+            <button type="button" class="btn btn-info" id="ok_button">確認</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- updateModal -->
+    <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-danger">
+            <h5 class="modal-title text-center fw-800 text-light" id="updateModalLabel">更新商品</h5>
+            <button type="button" class="btn-close btn btn-close-white" data-bs-dismiss="modal"
+              aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="update_pname" class="form-label">商品名</label>
+              <input type="text" class="form-control" placeholder="" id="update_pname" name="update_pname">
+              <div class="valid-feedback">字數符合規定</div>
+              <div class="invalid-feedback">字數不符合規定</div>
+            </div>
+            <div class="mb-3">
+              <label for="update_pprice" class="form-label">價格</label>
+              <input type="number" class="form-control" placeholder="" id="update_pprice" name="update_pprice">
+            </div>
+            <div class="mb-3">
+              <label for="num01" class="form-label">數量</label>
+              <input type="number" class="form-control" placeholder="" id="update_num01" name="update_num01">
+              <div class="valid-feedback">字數符合規定</div>
+              <div class="invalid-feedback">字數不符合規定</div>
+            </div>
+            <div class="mb-3">
+              <label for="update_Type" class="col-2 form-label">種類</label>
+              <select class="col-3 form-select" id="update_Type">
+                <option selected disabled>請選擇種類</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="update_image" class="form-label fw-800">圖片上傳</label>
+              <div class="row">
+                <div class="col-md-6">
+                  <input type="file" class="form-control" id="ufileupload" name="ufileupload">
+                </div>
+                <div class="col-md-6">
+
+                  <img src="" alt="" class="  rounded-2" id="prevImg_update">
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="content" class="form-label">商品描述</label>
+              <textarea class="form-control" placeholder="商品特色&注意事項" id="update_content"
+                style="height: 100px"></textarea>
+            </div>
+            <div class="mb-3">
+              <div class="form-check form-switch ">
+                <label for="switch01" class="form-check-label">狀態</label>
+                <input type="checkbox" name="update_switch01" id="update_switch01" class="form-check-input">
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+              <button type="button" class="btn btn-success" id="modal_update_btn">更新</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/jquery-3.7.1.min.js"></script>
+  <script src="js/sweetalert2.all.min.js"></script>
+  <script src="js/product/Create.js"></script>
+  <script src="js/product/read.js"></script>
+  <script src="js/admin/login.js"></script>
+
+  <script>
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+      document.getElementById("main").style.marginLeft = "250px";
+    }
+
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+      document.getElementById("main").style.marginLeft = "0";
+    }
+  </script>
+  <!-- <script>
+    var up_id; //for update
+    var newData = [];
+    var dataJSON = {};
+    var flag_image = "";
+    var switch01 = "未上架"; //記錄上架狀態
+    var filteredData = [];
+    var oldImage; //紀錄舊圖檔名稱
+
+    $(function () {
+      // 取得資料
+      getProductType();
+
+      function getProductType() {
+        $.ajax({
+          type: "GET",
+          url: "api/product-type/product-type_read-api.php",
+          dataType: "json",
+          async: false,
+          success: showData_productType,
+          error: function () {
+            alert("error:api/product-type/product-type_read-api.php");
+          }
+        });
+      }
+
+      function showData_productType(data) {
+        if (data.state) {
+          data.data.forEach(function (item) {
+            mapProductType.set(item["ID"], item["Name"]);
+            var html = '<option value="' + item["ID"] + '">' + item["Name"] + '</option>'
+            $("#update_Type").append(html);
+          });
+        } else {
+          alert(data.message);
+        }
+      }
+
+      // 監聽_圖片 #image
+      $("#ufileupload").change(function () {
+        var fileupload = $(this)[0];
+        console.log(fileupload);
+        console.log(fileupload.files[0]);
+        console.log(fileupload.files[0].name);
+        console.log(fileupload.files[0].size);
+        console.log(fileupload.files[0].type);
+        // fileupload.files
+        // 圖片於瀏覽器的暫存路徑
+        console.log(URL.createObjectURL(fileupload.files[0]));
+
+        if (
+          fileupload.files[0].type == "image/jpeg" ||
+          fileupload.files[0].type == "image/png"
+        ) {
+          // 顯示預覽圖
+          $("#prevImg_update").removeClass("d-none");
+          // attr換參數
+          $("#prevImg_update").attr("src", URL.createObjectURL(fileupload.files[0]));
+          flag_image = "Y";
+        } else {
+          alert("圖片格式不符合");
+          flag_image = "N";
+        }
+      });
+
+      // 監聽_即時監聽 #type
+      $(document).on('change', '#update_Type', function () {
+        console.log($(this).val());
+        if ($(this).val() != "") {
+          //已選擇分類
+          $(this).removeClass("is-invalid").addClass("is-valid");
+          flag_type = true;
+        } else {
+          //未選擇分類
+          $(this).removeClass("is-valid").addClass("is-invalid");
+          flag_type = false;
+        }
+      });
+
+
+
+      // 監聽switch上架
+      $("#update_switch01").click(function () {
+        // this現在的動作
+        console.log($(this).is(':checked'));
+        if ($(this).is(':checked')) {
+          $(this).next().text('已上架');
+          switch01 = '已上架';
+        } else {
+          $(this).next().text('未上架');
+          switch01 = '未上架';
+        }
+      });
+
+      $("body").on("click", "#mydata #update_btn", function () {
+        console.log("update_btn_ok");
+        console.log($(this).data("id"));
+        console.log($(this).data("image"));
+
+        var upimage = "";
+        upimage =
+        up_id = $(this).data("id");
+        $("#update_pname").val($(this).data("name"));
+        $("#prevImg_update").attr("src", '/upload/' + data("pimage"))
+        $("#update_pprice").val($(this).data("price"));
+        $("#update_num01").val($(this).data("number"));
+        $("#update_Type").val($(this).data("type"));
+        $("#update_content").val($(this).data("content"));
+        $("#update_switch01").prop("checked", $(this).data("state"));
+
+        oldImage = $(this).data("update_image");
+      });
+
+      $("#modal_update_btn").click(function () {
+        if (flag_upload) {
+          var formdata = new FormData();
+          formdata.append("file", fileupload.files[0]);
+          console.log(formdata); // 傳遞formdata至後端api 
+          $.ajax({
+            type: "POST",
+            url: "api/product/product_fileupload-api.php",
+            data: formdata,
+            dataType: "json",
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: showdata_image,
+            error: function () {
+              alert("error-api/product/product_fileupload-api.php");
+            },
+          });
+        } else if (!flag_upload) {
+          var formdata = new FormData();
+          formdata.append("file", fileupload.files[0]);
+          console.log(formdata); // 傳遞formdata至後端api 
+          $.ajax({
+            type: "POST",
+            url: "api/product/product_fileupload-api.php",
+            data: formdata,
+            dataType: "json",
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: showdata_oldimage,
+            error: function () {
+              alert("error-api/product/product_fileupload-api.php");
+            },
+          });
+        }
+
+      });
+
+
+    });
+
+    function showdata_image(data) {
+
+      var dataJSON = {};
+      dataJSON["ID"] = u_id;
+      dataJSON["pname"] = $("#update_pname").val();
+      dataJSON["pimage"] = data.datainfo["serverfilename"];
+      dataJSON["type-id"] = $("#update_Type").val();
+      dataJSON["content"] = $("#update_content").val();
+      dataJSON["num01"] = $("#update_num01").val();
+      dataJSON["pprice"] = $("#update_pprice").val();
+      dataJSON["state"] = $("#update_state").prop("checked") ? "Y" : "未上架";
+      console.log(JSON.stringify(dataJSON));
+
+      $.ajax({
+        type: "POST",
+        url: "api/product/product_update-api.php",
+        data: JSON.stringify(dataJSON),
+        dataType: "json",
+        success: showdata_update,
+        error: function () {
+          alert("error-admin_product_update_api.php");
+        }
+      });
+    }
+
+    function showdata_oldimage(data) {
+      var dataJSON = {};
+      dataJSON["ID"] = u_id;
+      dataJSON["pname"] = $("#update_pname").val();
+      dataJSON["pimage"] = data.datainfo["serverfilename"];
+      dataJSON["type-id"] = $("#update_Type").val();
+      dataJSON["content"] = $("#update_content").val();
+      dataJSON["num01"] = $("#update_num01").val();
+      dataJSON["pprice"] = $("#update_pprice").val();
+      dataJSON["state"] = $("#update_state").prop("checked") ? "Y" : "未上架";
+      console.log(JSON.stringify(dataJSON));
+
+      $.ajax({
+        type: "POST",
+        url: "api/product/product_update-api.php",
+        data: JSON.stringify(dataJSON),
+        dataType: "json",
+        success: showdata_update,
+        error: function () {
+          alert("error-admin_product_update_api.php");
+        }
+      });
+    }
+    function showdata_update(data) {
+      if (data.state) {
+        Swal.fire({
+          title: (data.message),
+          showDenyButton: true,
+          confirmButtonText: "確認",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire("更新成功!", "", "success");
+            location.reload();
+          } else if (result.isDenied) {
+            Swal.fire("更新失敗", "", "error");
+          }
+        });
+      } else {
+        alert(data.message);
+      }
+    }
+  </script> -->
+</body>
+
+</html>
