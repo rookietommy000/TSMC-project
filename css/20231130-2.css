@@ -1,0 +1,140 @@
+body{
+    background-color: var(--sea01);
+    padding-top: 20px;
+}
+
+.wrapper{
+    width: 1024px;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.banner nav{
+    background-color: var(--emerald02);
+    text-align: center;
+}
+
+.banner nav ul{
+    display: inline-block;
+}
+
+.banner nav ul li{
+    list-style: none;
+    float: left;
+}
+
+.banner nav ul li a{
+    text-decoration: none;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 20px;
+    margin-right: 20px;
+    color: var(--emerald04);
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.banner nav ul li a:hover{
+    background-color: var(--emerald01);
+}
+
+.sidebar{
+    background-color: var(--sea03);
+    width: 250px;
+    height: 90vh;
+    float: left;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.sidebar nav ul li{
+    list-style-type: none;
+}
+
+.sidebar nav ul li a{
+    background-color:var(--emerald04);
+    display: block;
+    width: 150px;
+    height: 60px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--sea03);margin-top: 30px;
+    line-height: 60px;
+}
+ 
+.sidebar nav ul li a:hover{
+    background-color: var(--emerald03);
+}
+
+.content_In{
+    padding-top: 18px;
+    padding-bottom: 18px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.content_In h1{
+    text-align: center;
+    color: var(--emerald01);
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.content_In p{
+    text-align: left;
+    font-size: 20px;
+    margin-bottom: 40px;
+}
+
+.content_In a{
+    width: 210px;
+    height: 45px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 35px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15;
+    margin-bottom: 15;
+    line-height: 45px;
+    font-weight: 600;
+    background-color: var(--emerald04);
+    color: var(--emerald02);
+}
+
+.content_In a:hover{
+    background-color: var(--sea03);
+}
+
+.footer{
+    background-color: var(--sea02);
+    text-align: center;
+}
+
+.footer p{
+    font-size: 45px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    color: var(--sea03);
+}
+
+@media screen and (max-width: 1024px){
+    .wrapper{
+        width: 100%;
+    }
+    .sidebar{
+        width: 100%;
+        height: auto;
+        text-align: center;
+    }
+    .sidebar ul{
+        display: inline-block;
+    }
+    .sidebar ul li{
+        float:left;
+        margin-right: 5px;
+    }
+}
